@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .subject {
+            float: left;
+            margin: 10px;
+            width: 300px;
+            height: 200px;
+            border: 2px solid black;
+        }
+        ul {
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+        }
+
+        ul li {
+            display: inline-block;
+            margin: 0 5px;
+            padding: 6px;
+            width: 70px;
+        
+        }
+
+        ul li:nth-child(1) {
+            background-color: darkred;
+        }
+
+        ul li:nth-child(2) {
+            background-color: darkgreen;
+        }
+
+        ul li:nth-child(3) {
+            background-color: dodgerblue;
+        }
+
+        .content {
+            width: 280px;
+            height: 140px;
+            line-height: 140px;
+            position: absolute;
+            left: 20px;
+            top: 60px;
+            text-align: center;
+            border: 2px dotted black;
+            border-radius: 5px;
+            font-size: 50px;
+            color: whitesmoke;
+            display: none;
+        }
+    </style>
+    <script src="js/jquery-1.12.4.min.js"></script>
+</head>
+
+<body>
+    <div class="subject">
+        <ul>
+            <li>语文</li>
+            <li>数学</li>
+            <li>英语</li>
+        </ul>
+
+        <div class="content">96</div>
+        <div class="content">86</div>
+        <div class="content">76</div>
+    </div>
+    <div class="subject">
+        <ul>
+            <li>语文</li>
+            <li>数学</li>
+            <li>英语</li>
+        </ul>
+
+        <div class="content">96</div>
+        <div class="content">86</div>
+        <div class="content">76</div>
+    </div>
+    <div class="subject">
+        <ul>
+            <li>语文</li>
+            <li>数学</li>
+            <li>英语</li>
+        </ul>
+
+        <div class="content">96</div>
+        <div class="content">86</div>
+        <div class="content">76</div>
+    </div>
+	
+	<div class="subject">
+	    <ul>
+	        <li>语文</li>
+	        <li>数学</li>
+	        <li>英语</li>
+	    </ul>
+	
+	    <div class="content">96</div>
+	    <div class="content">86</div>
+	    <div class="content">76</div>
+	</div>
+	<script src="js/jquery-1.12.4.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+ 
+$(".subject").mouseenter(function () {
+    var index=$(this).index();
+    var shu=324*index+20;
+    $(".content").css("left",shu+"px");
+    $("ul li").mouseenter(function(){
+        $(".content").hide().eq($(this).index()).css("background-color",$(this).css("background-color")).show();
+    })
+    $("ul li").mouseleave(function(){
+        $(".content").hide()
+    })
+  })
+    </script>
+</body>
+</html>

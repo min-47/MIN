@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * Math
+			 *  - Math
+			 *  - Math和其他对象不同，他不是一个构造函数
+			 *    他属于一个工具类，不用创建对象
+			 * 	  它里面封装了数学运算相关的属性
+			 *  - 比如
+			 *    Math.PI 表示圆周率
+			 * 
+			 */
+			console.log(Date);
+			console.log(Math);
+			console.log(Math.PI);
+			/**
+			 * abs()
+			 *  - 可以用来计算一个数的绝对值
+			 * 
+			 * Math.ceil()
+			 *  - 可以对一个数进行向上取整，小数只要有值就会自动进1
+			 * 
+			 * Math.floor()
+			 *  - 可以对一个数进行向下取整
+			 * 
+			 * Math.round()
+			 *  - 可以对一个数进行四舍五入
+			 * 
+			 * Math.random()
+			 *  - 可以用来生成0-1的随机数
+			 * 	- 生成0-x之间的随机数
+			 * 		Math.round(Math.random()*x);
+			 * 
+			 *  - 生成x-y之间的随机数
+			 *  	Math.round(Math.random()(y-x)+x);
+			 * 
+			 *  - 生成x-y之间闭区间的数
+			 * 		Math.floor(Math.random()*(y+1-x)+x)
+			 * 
+			 * max() 可以获取多个数中的最大值
+			 * min() 可以获取多个数中的最小值
+			 * 
+			 * Math.pow(x,y)
+			 *  - 返回x的y次幂
+			 * 
+			 * Math.sqrt();
+			 *  - 求一个数的平方根
+			 */
+			
+			console.log(Math.ceil(1.1));
+			console.log(Math.floor(1.1));
+			console.log(Math.random());
+			
+			for(var i= 0;i<100;i++){
+				console.log((Math.floor(Math.random()*(11-6)+6)));
+			}
+			
+			var max = Math.max(12,43,44,56,2);
+			var min = Math.min(12,43,44,56,2);
+			console.log(min);
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

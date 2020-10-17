@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/**
+			 * 创建多个对象
+			 */
+			var obj = {
+				name : "孙悟空",
+				sayName : function(){
+					alert(this.name)
+				}
+			}
+			
+			var obj2 = {
+				name : "猪八戒",
+				sayName : function(){
+					alert(this.name);
+				}
+			}
+			/**
+			 * 使用工厂方法创建对象,使用的构造函数都是Object
+			 * 所以创建的对象都是Object这个类型
+			 * 就导致我们无法区分不同类型的对象 
+			 * 
+			 */
+			function createPerson(name ,age, gender ){
+				//创建一个新的对象
+				var obj = new Object();
+				//向对象中添加属性
+				obj.age =age;
+				obj.gender=gender;
+				obj.name = name;
+				obj.address ="fuyang";
+				obj.sayName = function(){
+					alert(this.name);
+					}
+				//将新的变量返回
+				return obj;
+			}
+			
+			var obj3 = createPerson("zhubajie",26,"男");
+			var obj4 = createPerson("孙悟空",34,"男");
+			var obj5 = createPerson("白骨精",48,"女");
+			 
+			 console.log(obj3);
+			 console.log(obj4);
+			 console.log(obj5);
+				
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

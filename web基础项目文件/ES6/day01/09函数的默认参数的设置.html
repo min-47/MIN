@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//ES6允许给函数赋值初始值
+		//1.形参初始值，具有默认值的参数，一般位置要靠后(潜规则)
+		// function add(a,b,c=10){
+		// 	return a+b+c;
+		// }
+		
+		// let result = add(1,2);
+		// console.log(result);
+		
+		//2.与解构赋值结合 别忘记大括号
+		function connect({host="1111",username,password,port}){
+			//let host = options.host
+			console.log(host);
+		}
+		//调用函数，并传一个对象作为实参
+		//不使用赋初值的情况下，需要使用形参才能调用属性
+		connect({
+			
+			username:'min',
+			password:'123',
+			port:'0000'
+		});
+	</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function fun(){
+				alert("函数要执行了");
+				for(var i= 0;i<5;i++){
+					console.log(i);
+					
+					if (i==2){
+						//使用break可以退出当前的循环
+						//break;
+						
+						//continue用于跳过当前循环
+						//continue
+						
+						//使用return可以结束整个函数
+						//return；
+					}					
+			}
+			
+			}
+			fun();
+			/**
+			 * 返回值可以是任意数据类型
+			 * 		也可以是一个函数对象
+			 * 
+			 */
+			function fun2(){
+				//在函数内部声明一个函数
+				
+			}
+			function fun3(){
+				//在函数内部可以在声明一个函数
+				function fun4(){
+					alert("我是fun4");
+					}
+					//将fun4 函数对象作为返回值
+					return fun4;
+				}
+				a =fun3();
+				console.log(a);
+				
+				a();
+				//获取返回值再调用
+				fun3()();
+				
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

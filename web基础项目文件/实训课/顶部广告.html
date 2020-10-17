@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+		#box {
+			width: 100px;
+			height: 100px;
+			background-color: green;
+		}
+		
+		.container {
+			/* display: block; */
+			margin: auto;
+			width: 1280px;
+			position: relative;
+			top:-800px;
+			
+		} 
+		.container img {
+			width: 1280px;
+			height: 800px;
+			}
+			
+		.container img:first-child {
+			display: none;
+			
+		}
+    </style>
+</head>
+<body>
+	<div class="container">
+		<img id="topad" src="img/01.jpg" />
+		<img src="img/02.jpg" />
+	</div>
+	
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script>
+		/**
+		 * 图片动态不要局限于图片本身
+		 *一整个队列适应动画
+		 */
+		setInterval(function(){$(".container").animate({
+			top: 0
+			}, 5000,function(){
+				
+				$(this).delay(1000).animate({
+					top:-800
+				},5000);
+			});},10000)
+		
+	
+    </script>
+</body>
+</html>

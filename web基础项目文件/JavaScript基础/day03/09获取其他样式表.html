@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box03, #box01{
+				width: 100px;
+				height:100px;
+				padding: 10px;
+				background-color: red;
+				border: 10px solid yellow;
+				}
+			#box03{
+				left: 100px;
+				}
+			#box02{
+				width: 500px;
+				height:500px;
+				background-color: #00BFFF;
+				left: 100px;
+				}
+				
+			#box04{
+				width: 200px;
+				height: 200px;
+				background-color: #00BFFF;
+				overflow: auto;
+				}
+				
+			#box05{
+				width: 150px;
+				height: 500px;
+				background-color: #bfa;
+				}
+		</style>
+	</head>
+	<body>
+		<button  id = "btn01" type="button">开始01</button>
+		<button  id = "btn02" type="button">开始02</button>
+		<button  id = "btn03" type="button">开始03</button>
+		<button  id = "btn04" type="button">开始04</button>
+		<br>
+		<br>
+		<br>
+		
+		<div id="box04">
+			<div id="box05"></div>
+		</div>
+		
+		<br>
+		<br>
+		<br>
+		<div id="box01" >
+			
+			<div id="box02" style="position: relative;">
+				<div id = "box03" style="position: relative;"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var btn01 = document.getElementById("btn01");
+		var btn02 = document.getElementById("btn02");
+		var btn03 = document.getElementById("btn03");
+		var btn04 = document.getElementById("btn04");
+		var box01 = document.getElementById("box01");
+		var box03 = document.getElementById("box03");
+		var box04 = document.getElementById("box04");
+		var box05 = document.getElementById("box05");
+		
+		 btn01.onclick = function(){
+			/**
+			 * clientWidth
+			 * clientHeight
+			 *  - 这两个属性可以获取元素的可见宽度和高度
+			 * 
+			 * offsetWidth
+			 * offsetHeight
+			 *  - 这两个属性可以获得元素整个高度和宽度，包括内容区内边距和边框
+			 * 
+			 * offsetParent
+			 *  - 可以用来获取当前元素的定位元素
+			 *  - 会获取到当前元素最近开启了定位的祖先元素
+			 * 	- 如果所有祖先元素都没开启定位，则返回body
+			 * 
+			 * offsetLeft
+			 * 	- 当前元素相当于其定位元素的水平偏移量
+			 * offsetTop
+			 *  - 当前元素相当于其定位元素的垂直偏移量
+			 * 
+			 * scrollWidth
+			 * scrollHeight
+			 *  - 可以获取元素整个滚动区域的高度
+			 *  
+			 * scrollLeft
+			 *  - 可以获取水平滚动条的距离（父元素的属性）
+			 * scrollTop
+			 *  - 可以获取垂直滚动条的距离
+			 * 
+			 * 
+			 * 注意
+			 * 	 - 这些属性不带px的，返回值是一个数字，可以直接进行计算
+			 * 	 - 会获取元素宽度和高度，包括内容区和内边距
+			 * 	 - 这些属性都是只读的。不能用来修改
+			 */
+			alert(box01.clientHeight);
+			alert(box01.offsetHeight);
+			}; 
+			
+			
+			btn02.onclick = function(){
+				var op = box03.offsetParent;
+				alert(op.id);//box02
+			
+				};
+			
+			btn03.onclick = function(){
+				var op = box03.offsetLeft;
+				alert(op);
+			}
+			
+			//scrollHeight
+			btn04.onclick = function(){
+				var op = box05.scrollHeight;
+				op = box04.scrollTop;
+				
+				alert(box04.scrollHeight-box04.scrollTop);//==clientHeight
+			}
+	</script>
+</html>

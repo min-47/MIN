@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * 迭代器（Iterator）是一种接口，为各种不同的数据结构提供统一的访问机制
+		 * 任何数据结构只要部署Iterator接口，就可以完成遍历操作
+		 * 1.ES6创建了一个新的遍历命令，Iterator接口主要供for...of消费
+		 * 2.原生具备Iterator接口的数据（可用for of遍历）
+		 * 
+		 *   - array
+		 *   - Arguments
+		 *   - Set
+		 *   - Map
+		 * 	 - String
+		 * 	 - TypedArray
+		 * 	 - NodeList
+		 * 
+		 * 3.工作原理
+		 *   1）创建一个指针对象，指向当前数据结构的起始位置
+		 * 	 2）第一次调用对象的next方法，指针自动指向数据结构的第一个成员
+		 * 	 3) 接下来不断调用next方法，指针一直往后移动，直到指向最后一个成员
+		 * 
+		 */
+		//声明一个数组
+		//const west = ['唐僧','孙悟空','猪八戒','沙僧'];
+		
+		//使用for...of 遍历数组 打印键值
+		// for(let v of west){
+		// 	console.log(v);
+		// }
+		
+		//使用for...in 遍历数组 打印键名
+		// for(let v in west){
+		// 	console.log(v);
+		// }
+		
+		// let Iterator = west[Symbol.iterator]();
+		// console.log(Iterator.next());
+		
+		//自定义遍历数据
+		//声明一个对象
+	let banji = {
+		name:'究极一班',
+		stus:[
+			'xiaoming',
+			'xiaoli',
+			'xiaohan',
+			'xiaohan',
+			'xiaohan',
+			'xiaohan',
+			'min-47'
+		],
+		
+		
+		//banji.stus.forEach();//可以实现功能，但是不符合面对对象的思想
+		
+		//自定义一个简单的迭代器
+		 [Symbol.iterator](){
+			 //声明一个索引变量
+			let index = 0;
+			let  this1 = this;
+			return { 
+				next: function(){
+					
+					if(index <this1.stus.length){
+						//debugger
+						const result = { vallue:this1.stus[index],done:false};
+						//下标自增
+						index++;
+						return result;
+					}else{
+						return {value:'hhh',done:true};
+					}
+					
+				}
+			};
+		 },		  
+	 
+	}	
+	 //遍历这个对象,每一返回的是数组的成员 banji没有接口
+	 //暂时有点问题。等以后调试
+	for( let i of banji){
+		 //debugger
+	 	console.log(i);
+	 }
+	 
+	</script>
+</html>

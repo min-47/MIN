@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			 button{
+				 width: 100px;
+				 height: 50px;
+				 background-color: #00BAAF;
+			 }
+		</style>
+	</head>
+	<body>
+		 <button id="btn01">开始1</button>
+		 <button id="btn02">开始2</button>
+	</body>
+	<script type="text/javascript">
+		 var btn01 = document.getElementById("btn01");
+		 var btn02 = document.getElementById("btn02");
+		 btn01.onclick = function(){
+			 alert("1");
+		 } 
+		 btn02.onclick = function(){
+			 alert("2");
+		 }
+		 //设置btn01对鼠标按下相关事件进行捕获
+		 //当调用一个元素的setCapture()方法以后，这个元素会将下一次所有的鼠标按下相关的事件进行捕获
+		 btn01.setCapture();
+	</script>
+</html>

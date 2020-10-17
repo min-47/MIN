@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			#box1{
+				width: 30px;
+				height: 30px;
+				background-color: #00BFFF;
+				position: relative;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box1"></div>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * 使div随鼠标移动
+		 * 
+		 *  - clientX 是获取可见窗口的水平坐标
+		 *  - clientY 是获取可见窗口的垂直坐标
+		 * 
+		 * div是相对于整个页面的。
+		 * 
+		 * pageX和pageY 获取鼠标相当于整个页面的偏移量
+		 *  - IE不支持该属性。
+		 */
+		
+		/**
+		 * 获取滚动条的高度
+		 * chrome 认为滚动条使body的 可以通过body。scrolltop来获取//现在已废弃
+		 * 现在都认为是HTML的。
+		 */
+		
+		var box1 = document.getElementById("box1");
+		document.onmousemove = function(){
+			//获取鼠标的坐标
+			var left = event.clientX;
+			var top = event.clientY;
+			
+			//设置div的偏移量
+			box1.style.left = left +"px";
+			box1.style.top = top+"px";
+		}
+	</script>
+</html>

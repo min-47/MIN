@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//ES6 引入rest参数，用于获取函数的实参 ，用来电梯arguments
+		//ES5 获取实参的方式
+		// function date(){
+		// 	console.log(arguments);
+		// }
+		// date('hhh','qqq','eee');
+		
+		//rest 参数 ...
+		function date(...args){
+			console.log(args);//是数组 方便使用数组方法
+		}
+		date('hhh','qqq','eee');
+		
+		//rest参数必须放到最后
+		function fn(a,b,...args){
+			console.log(a);
+			console.log(b);
+			console.log(args);
+		}
+		date('hhh','qqq','eee','fff','ggg','hhoo');
+	</script>
+</html>
