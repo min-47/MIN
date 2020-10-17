@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript">
+			function Person(name,age,gender){
+				this.name = name;
+				this.age = age;
+				this.gender = gender;
+				
+			}
+			//创建一个Person实例
+			var per = new Person("孙悟空",18,"男");
+			var per2 = new Person("猪八戒",18,"男");
+			//当我们直接在页面打印一个对象，事件输出的是toSting()方法的返回值
+			//如果我们希望在输出对象不输出[object Object],可以为对象添加一个toString（）方法
+			//古早的方法，现在浏览器已经能识别了
+			
+			per.toString = function(){
+				return  "我是一个快快乐的小Person";
+			};
+			//修改Person的原型对象toString
+			Person.prototype.toString = function(){
+				return "Person name="+this.name+"age ="+this.age;
+			}
+			
+			console.log(per.toString());
+		</script>
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>

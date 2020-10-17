@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button type="button" id = "btn">开始</button>
+	</body>
+	<script type="text/javascript">
+		var btn = document.getElementById("btn");
+		/**
+		 * 定义一个函数，用来指定元素绑定函数
+		 * 	参数
+		 * 		obj 要绑定事件的对象
+		 * 		eventStr 事件的字符串
+		 * 		callback 回调函数
+		 * 		addEventListener() 中分this 是绑定事件的对象
+		 * 		attachEvent()中的this是 window
+		 */
+		function bind(obj,eventStr,callback){
+			if(obj.addEventListener){
+				obj.addEventListener(eventStr,callback,false);
+				}else{
+					/**
+					 * this是由调用方式决定的
+					 * callback.call(obj)
+					 */
+					
+					obj.attachEvent("on"+eventStr ,function(){
+						callback.call(obj);
+					});
+				}
+			}
+			
+			bind(btn,"click", function(){
+				alert("1");
+			})
+	</script>
+</html>

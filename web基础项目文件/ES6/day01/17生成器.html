@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * 生成器其实就是一个特殊的函数
+		 * 异步编程 纯回调函数 node fs ajax mongodb
+		 * 函数代码的分隔符
+		 */
+		function *gen( ){
+			
+			console.log(111);
+			yield '一只没有耳朵1';
+			
+			console.log(222);
+			 yield '一只没有耳朵2';
+			
+			console.log(333);
+			yield '一只没有耳朵3';
+			
+			console.log(444);
+			yield '一只没有耳朵4';
+		}
+		
+		//迭代器对象
+		let iterator = gen( );
+		//需要调用next方法 执行 gen()
+		 //iterator.next();//111
+		 
+		 console.log(iterator.next());//222 并且包含 yield语句耳朵2
+		 
+		 // iterator.next();//333
+		 // iterator.next();//444
+		 // iterator.next();//111
+		  
+		 //遍历
+		 // for(let v of gen()){
+			//  console.log(v);
+		 // }
+	</script>
+</html>

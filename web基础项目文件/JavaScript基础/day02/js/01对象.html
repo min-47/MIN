@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script type="text/javascript">
+			/*
+			 *js 中数据类型
+			 * 
+			 * String类型
+			 * Boolean 布尔值
+			 * Undefined 未定义
+			 * Null 空值
+			 * -以上五种类型属于基本数据类型，以后我们看到的值
+			 * 		只要不是上边五种，全部是对象
+			 * -Object 对象
+			 * 如果使用基本数据类型的数据，我们创建的变量都很独立，不能成为一个整体
+			 * 基本数据类型都是单一的值，值和值之间没有任何的联系
+			 * 
+			 * 对象的分类
+			 * 1.内建对象
+			 * 	-由ES标准中定义的对象，在任何的ES的实现都可以使用
+			 * 	-比如，Math String Number Boolean Function
+			 * 
+			 * 2.宿主对象
+			 * 	-由js运行环境提供的对象，目前主要指浏览器提供的对象
+			 * 	-比如 BOM DOM
+			 * 
+			 * 3.自定义对象
+			 * 	-由开发人员自己创建的对象
+			 * 
+			 * 
+			 */
+			//创建对象
+			/*
+			 *使用new关键字调用的函数，是构造函数constructor
+			 * 构造函数是专门用来创建对象的函数
+			 * 使用typeof检查一个对象时，会返回object
+			 * 
+			 */
+			var obj = Object();
+			/*
+			 * 在对象中保存的值称为属性
+			 * 向对象添加属性
+			 * 语法：对象.属性名 = 属性值；
+			 * 
+			 */
+			//向obj中添加一个name属性
+			obj.name = "孙悟空";
+			//向obj中添加一个gender属性
+			obj.gender = "男";
+			/*
+			 *读取对象的属性
+			  * 语法：对象.s属性名
+			  * 如果读取对象中没有属性，就直接返回undifind
+			 */
+			console.log(obj.hello);
+			console.log(obj.gender);
+			/*
+			 *修改对象的属性值
+			  * 语法：对象.属性名 = 新值
+			 */
+			obj.name = "tom";
+			/*
+			 *删除对象的属性
+			  * 语法 ： delete 对象.属性名
+			 */
+			delete obj.name;
+			console.log(obj.name);
+		</script>
+	</head>
+	<body>
+		
+		
+	</body>
+</html>

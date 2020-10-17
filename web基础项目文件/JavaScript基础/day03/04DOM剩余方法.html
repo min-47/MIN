@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="box1">
+			我是第一个div
+			<div>我是一个div</div>
+			<div>我是第二个孩子</div>
+			<div></div>
+		</div>
+		<div class="box1"></div>
+		<div class="box1"></div>
+	</body>
+	<script type="text/javascript">
+		
+		//获取body标签
+		//var body = document.getElementsByTagName("bady")[0];
+		/**
+		 * 在document中有一个属性bady，他保存的是body的引用
+		 * 
+		 */
+		var body = document.body;
+		/**
+		 * document.getElement保存的是html的根标签
+		 */
+		var html = document.getElement;
+		//console.log(html);
+		//all属性已经被弃用
+		//all 是页面里面的所有元素
+		var all = document.all;
+		//也可以获取页面里所有元素
+		all = document.getElementsByTagName("*");
+		
+		console.log(all.length);
+		
+		
+		/**
+		 * 根据元素class属性值查询一组元素节点对象
+		 * getElementsByClassName()可以根据class属性获取一组元素节点对象
+		 * 但是该方法不支持IE8以下的浏览器
+		 */
+		var box1 = document.getElementsByClassName("box1");
+		
+		var divs = document.getElementsByTagName("div");
+		//alert(divs.length);
+		
+		/**
+		 * document.querySelector()
+		 *  - 需要一个选择器作为参数，可以根据yigecss选择器来查询一个元素节点对象
+		 * 虽然IE8没有getElementsByClassName()，但是可以使用document.querySelector()代替
+		 * 注意：
+		 * 		- 使用该方法总会返回一个元素，如果满足的元素有多个，name他只会返回第一个符合条件的元素
+		 */
+		var div = document.querySelector(".box1 :nth-child(2)");
+		//alert(div.innerHTML);//我是第二个孩子
+		
+		var div = document.querySelector(".box1");
+		console.log(div.innerHTML);
+		
+		/**
+		 * document.querySelectorAll()
+		 * 该方法和document.querySelector()类似
+		 * 不同
+		 *  - 是会将符合条件的元素封装成数组
+		 * 	即使符合条件的元素只有一个，也会返回数组
+		 */
+		div = document.querySelectorAll(".box1");
+		console.log(div.length);
+	</script>
+</html>

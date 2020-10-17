@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script type="text/javascript">
+			
+			//创建一个数组
+			var arr = ["孙悟空","猪八戒","孙悟空","猪八戒"];
+			
+			for(var i = 0; i<arr.length ;i++){
+				console.log(arr[i]);
+			}
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+			}
+			//修改Person原型的toString,现在的浏览器不需要修改了
+			var per = new Person("孙悟空",15);
+			var per1 = new Person("孙悟空1",12);
+			var per2 = new Person("孙悟空2",18);
+			var per3 = new Person("孙悟空3",19);
+			
+			console.log(per);
+			/**
+			 * 将这些person对象放入一个数组中
+			 */
+			var perArr = [per,per1,per2,per3];
+			
+			function getAdult(arr){
+				//创建一个新数组
+				var newArr = [];
+				//遍历arr 获取arr是否大于等于18
+				for(var i=0;i<arr.length;i++){
+					var p = arr[i];
+					if(p.age >=18){
+						newArr.push(p);
+					}					 
+				}
+				
+				return newArr;
+			}
+			console.log(getAdult(perArr));
+			
+		</script>
+		<title></title>
+	</head>
+	<body>
+	</body>
+</html>

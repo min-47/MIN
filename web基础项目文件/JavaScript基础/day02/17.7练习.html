@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			function Person(name,age){
+				this.name = name;
+				this.age = age;
+				//console.log("Persron [name ="+this.name +" "+this.age +"=18】 ")
+				
+				}
+				Person.prototype.toString = function(){
+					return "嘿嘿，Persron [name ="+this.name +this.age+"=18】 ";
+				}
+				
+				var per = new Person("孙悟空",18);
+				var per1 = new Person("孙悟空1",18);
+				var per2 = new Person("孙悟空2",18);
+				
+				var arr = [per,per1,per2];
+				console.log(arr);
+				//console.log(per);
+				
+				for(var i = 0;i<arr.length;i++){
+					console.log("第一个"+i+"对象"+arr[i].toString());
+				}
+				
+				var arr2 = ["swk","zbj","ts","sahes"];
+				arr2.push("zzj");
+				console.log(arr2);
+				arr2.pop();
+				console.log(arr2);
+				arr2.unshift("nmw");
+				arr2.shift();
+				console.log(arr2);
+				
+				var arr = [1,2,3,3,4,55,5,5,6,7,1];
+				for(var i = 0;i<arr.length;i++){
+					for (var j =i+1;j<arr.length;j++){
+						if(arr[i]==arr[j]){
+							arr.splice(j,1);
+							j--;
+						}
+					}
+				}
+				arr.sort(function(a,b){
+					return a-b;
+				})
+				console.log(arr);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+	</body>
+	<script type="text/javascript">
+		//ES6允许在大括号里面，直接写入变量和函数 ，作为对象的属性和方法
+		//这样写更加简洁
+		let name = 'min';
+		let change = function(){
+			console.log("我想要改变你");
+			}
+		const obj = {
+			name,
+			change,
+			//方法声明的简化
+			//原本写法
+			// improve: function(){
+			// 	console.log("我想学习，我爱学习");
+			
+			
+			//简化后的写法，可读性比较差，不建议。
+			improve(){
+				console.log("我想学习，我爱学习");
+			}
+		}
+		//调用方法
+		 obj.improve();
+	</script>
+</html>
