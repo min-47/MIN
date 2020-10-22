@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态组件</title>
+    <style>
+        ul li {
+          float: left;
+          width: 300px;
+          height: 50px;
+          background-color: #888;
+          
+          list-style: none;
+          line-height: 50px;
+      }
+      footer{
+          position: absolute;
+          bottom: 0px;
+      }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <keep-alive>
+        <!-- is的属性值是谁就是谁显示 -->
+        <component :is="who"></component>
+        </keep-alive>
+        
+
+        <footer>
+            <ul>
+                <!-- 标签的herf值取消，才不会出现闪现  -->
+                <!-- 是给who赋值，因此需要用单引号括起来 -->
+                <li><a   @click="who='home'">首页</a></li>
+                <li><a   @click="who='list'">列表页</a></li>
+                <li><a  @click="who='shopcar'">购物车页面</a></li>
+            </ul>
+        </footer>
+    </div>
+    
+</body>
+<script src="js/vue.js"></script>
+<script>
+    /*
+    动态组件
+      <component>元素，动态的绑定多个组件到他的is属性
+      </keep-alive>保留状态，避免重新渲染  //将component元素括起来
+    
+    */
+ 
+    var vm = new Vue({
+        el:"#box",
+        data:{
+            who:'home'
+        },
+        components:{
+            "home":{
+                // 动态组件是删除上次页面，并不是隐藏，
+                // vue提供一个属性保持整个组件活着
+                template:`<div>home
+                <input/>
+                </div>`,
+            },
+            "list":{
+                template:`<div>list</div>`,
+            },
+            "shopcar":{
+                template:`<div>shopcar</div>`,
+            }
+        }
+    })
+</script>
+</html>

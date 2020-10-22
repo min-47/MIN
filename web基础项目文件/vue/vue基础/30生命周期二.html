@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期二</title>
+    <script src="js/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="box" >
+        <li v-for="data in datalist" :key="data.id">
+             <h3>{{data.nm}}</h3>
+             <!-- 查询不到图片路径，后端和前端的图片路径不一致 -->
+             <!-- 采取过滤器 -->
+            <!-- <img :src="data.img"/> -->
+            <img :src="data.img|mypath" />
+        </li>
+       
+    </div>
+    
+</body>
+<script>
+    Vue.filter("mypath",function(data){
+        return data.replace("w.h","128.180")
+    })
+    new Vue({
+        el:"#box",
+        data:{
+            datalist:[]
+        },
+        mounted() {
+            axios.get("test2.json").then(res=>{
+                console.log(res.data);
+                this.datalist = res.data.movieList
+            })
+        },
+    })
+</script>
+</html>

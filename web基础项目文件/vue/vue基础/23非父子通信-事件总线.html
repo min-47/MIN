@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 非父子通信——事件总线</title>
+</head>
+<body>
+    <div id="box">
+        <weixinnauthor></weixinnauthor>
+        <weixinuser></weixinuser>
+    </div>
+    
+</body>
+<script src="js/vue.js"></script>
+<script>
+    /*
+    事件机制
+            *使用$on(eventName)监听事件
+            *使用$emit(eventName)触发事件
+    Ref
+        <input ref ="myText"/> this.$refs.mytext
+    
+    中央事件总线
+        var bus  = new Vue(),
+        mounted生命周期进行监听
+    */
+    // 空的vue实例，就是中央事件总线
+    var bus = new Vue();
+
+    Vue.component("weixinnauthor",{
+        template:`
+        <div style="backgroundColor:blue">
+             <input type="text" ref="mytext">
+             我是一个微信公众号作者
+             <button @click = handleClick()>发布</button>
+        </div>
+        `,
+        methods: {
+            handleClick(){
+                // $emit 和 $on 必须一致
+                bus.$emit("weixinmessage",this.$refs.mytext.value)
+            }
+        },
+    })
+
+    Vue.component("weixinuser",{
+        // 合适的位置进行订阅 bus.$on
+        template:`
+        <div style="backgroundColor:yellow">
+             我是用户
+             <button>接收</button>
+        </div>
+        `,
+        mounted(){
+            // this.$refs.mytext.value
+            bus.$on("weixinmessage",(data)=>{
+                console.log("收到推送了", data)
+            })
+            console.log("生命周期函数=当前组件都没创建完成后就会被调用")
+        }
+    })
+    new Vue({
+        el:"#box"
+    })
+</script>
+</html>

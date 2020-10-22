@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+        <title></title>
+        <style>
+             .ex-enter-active{
+            animation: bounce-in .3s;
+        }
+        .ex-leave-active{
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+        }
+        }
+        </style>
+	</head>
+	<body>
+		<div id="demo">
+			<h2>测试： v-for 遍历数组</h2>
+			<ul>
+			 
+                <transition-group name="ex"  >
+                    <li v-for="(i,index) in persons" :key ="index">
+                        {{index}}----{{i.name}}----{{i.age}}
+                        ----<button type="button" @click="deleteP(index)">删除</button>
+                        ----<button type="button" @click="updateP(index,{name:'tom*',age:33})">更新</button>
+                    </li>
+                </transition-group>
+			</ul>	
+			 
+			<h2>对象： v-for 遍历对象</h2>
+			<ul><!-- key值 属性名 -->
+				<li v-for="(p,key) in persons[1]" :key="key">{{p}}---{{key}} </li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		 /*
+         列表过渡(设置key)
+         <transition-group>不同于transition，他会以一个真实元素呈现：
+         默认为一个<span>
+         也可以通过tag特性更换为其他的元素
+            提供了唯一的key值
+         */
+		
+		const vm = new Vue({
+			el:'#demo',
+			data:{
+				persons:[ 
+					{name:'tom0',age:18},
+					{name:'tom1',age:17},
+					{name:'tom2',age:16},
+					{name:'tom3',age:15},
+					{name:'tom4',age:14},]
+					
+			},
+			methods:{
+				deleteP(index){
+					 
+					this.persons.splice(index,1)
+				},
+				updateP(index,obj){
+					 
+					this.persons.splice(index,1,obj)
+				}
+			}
+		})
+	</script>
+</html>

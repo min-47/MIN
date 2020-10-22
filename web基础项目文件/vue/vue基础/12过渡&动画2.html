@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ex-enter-active{
+            animation: bounce-in .3s;
+        }
+        .ex-leave-active{
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1.5);
+        }
+        100% {
+            transform: scale(1);
+        }
+        }
+    </style>
+</head>
+<body>
+    <div id="example-2">
+        <button @click='show=!show'>toggle show</button>
+        <transition name='ex'>
+            <!-- 有一个bug 加上display:inlineblock -->
+            <p v-show="show" style="display:inline-block">我想学前端，就塌下心来去学习前端，想太多不容易成事，还浪费时间，你自己要有打算，你还有时间。</p>
+        </transition>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:'#example-2',
+        data:{
+            show:true,
+        }
+    })
+</script>
+</html>

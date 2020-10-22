@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>swiper</title>
+    <script src="js/vue.js"></script>
+    <script src="js/swiper.animate1.0.3.min.js"></script>
+    <script src="js/swiper-3.4.2.min.js"></script>
+    <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <style type="text/css">
+        .swiper-container{
+          /* --swiper-theme-color: #ff6600; */
+          --swiper-pagination-color: #00ff33;/* 两种都可以 */
+          width: 600px;
+          height: 300px;
+        }
+      </style> 
+</head>
+<style>
+   
+</style>
+<body>
+    <div id="box">
+        <!-- swiper基本结构 -->
+       
+        <div class="swiper-container a">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" v-for="data in datalist">
+                    {{data}}
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    
+</body>
+<script>
+    new Vue({
+        el:"#box",
+        data:{
+            datalist:[]
+        },
+
+        mounted() {
+            
+            setTimeout(()=>{
+                this.datalist=["1111","2222","3333"]//状态改完 异步更新dom
+                console.log(document.querySelectorAll(".swiper-slide").length)
+                // 设置别名为a
+                //  new Swiper('.a',{
+                //         loop : true,
+                //         // 如果需要分页器
+                //         pagination:{
+                //             el:".swiper-pagination",
+                //         }
+                //     })
+                    /*如果只有一个slide就销毁swiper
+                    if(mySwiper.slides.length<=3){
+                        mySwiper.destroy();
+                    }*/
+
+                    // swiper 初始化过早
+
+
+            },2000)
+
+            
+        },
+        updated(){
+            var swiper = new Swiper('.a',{
+                        loop : true,
+                        // 如果需要分页器
+                        pagination:{
+                            el:".swiper-pagination",
+                            paginationClickable :true,
+                        }
+                    })
+                    
+                     
+            }
+    })
+</script>
+</html>

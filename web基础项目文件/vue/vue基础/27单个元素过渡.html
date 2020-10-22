@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单个元素过渡</title>
+    <style>
+        /*  */
+        .myCss-enter-active,.myCss-leave-active{
+            transition: all 1.5s;
+        }
+        .myCss-enter,.myCss-leave-to{
+            opacity: 0;
+            transform: translateX(100px);
+        }
+    </style>
+    <link rel="stylesheet" href="https://unpkg.com/animate.css@3.5.2/animate.min.css">
+</head>
+<body>
+    <div id="box">
+        <button @click="isShow=!isShow">click</button>
+        <!-- 使用动画效果 -->
+        <transition name="myCss" mode="in-out">
+            <!--多个元素过渡 diff算法 会对比tag标签，进行代码复用-->
+            <!-- 设置不同key值 -->
+            <div v-if="isShow" key="1">111111111111111111111</div>
+            <div v-else key="2">2222222222222222222222222</div>
+        </transition>
+        
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    /*
+     transiton过渡
+            Vue在插入，更新，或者移除Dom时，提供不同方式的应用的过渡效果
+
+            1.单元素/组件过渡
+                css过渡
+                css动画
+                结合animate.css动画库
+
+           
+    */
+    new Vue({
+        el:"#box",
+        data:{
+            isShow:true
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ref通信</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" ref="mytext">
+        <button @click ="handleAdd">Add</button>
+        <child ref="mychild"></child>
+
+    </div>
+    
+    
+</body>
+<script src="js/vue.js"></script>
+<script>
+    /*
+    1.ref放在标签上，拿到的是原生节点
+    2.ref放在组件上，拿到的是组件对象
+    3.ref的耦合性高
+
+    父组件可以随便访问子组件的属性和方法
+    父传子直接调用孩子的方法。
+    ref拿到整个子组件的控制权
+    */
+    // 子组件
+    Vue.component("child",{
+        template:`
+        <div>
+            child
+        </div>
+        `,
+        data() {
+            return {
+                childname:"子属性的状态",
+            }
+        },
+        methods:{
+            add(){
+                console.log("子组件的方法")
+            }
+        }
+    })
+    var vm = new Vue({
+        el:'#box',
+        data:{
+
+        },
+        methods: {
+            handleAdd(){
+                // 调用子组件的状态
+                console.log("111",this.$refs.mychild.childname)
+                 this.$refs.mychild.add()
+            }
+        },
+    })
+</script>
+</html>

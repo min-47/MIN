@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="checkbox" name="" id="" @change="hasChange" v-model="isallCheck">
+        <ul>
+            <li v-for="(data, index) in datalist" :key="index">
+                <input type="checkbox" :value="data"  v-model="checkgroup" @change="hasliChange">
+                {{data}}
+                <button @click="hasdelCheck(data)" >del</button>
+                {{data.number}}
+                <!--  -->
+                <button @click="data.number++">add</button>
+            </li>
+        </ul>
+        {{checkgroup}}
+        <p>总金额计算{{getSum()}}</p>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:"#box",
+        data:{
+            isallCheck:false,
+            checkgroup:[],
+            datalist:[
+                {
+                    name:'商品1',
+                    price: 10,
+                    number: 1,
+                    id:'1'
+                },
+                {
+                    name:'商品2',
+                    price: 20,
+                    number: 2,
+                    id:'2'
+                },
+                {
+                    name:'商品3',
+                    price: 30,
+                    number: 3,
+                    id:'3'
+                },
+                {
+                    name:'商品4',
+                    price: 40,
+                    number: 4,
+                    id:'4'
+                },
+
+            ]
+
+        },
+        methods: {
+            //函数计算中的状态改变后，函数会自动执行一次
+            getSum(){
+                var sum =0;
+                for(var i in this.checkgroup){
+                    sum += this.checkgroup[i].number*this.checkgroup[i].price
+                }
+                 return sum;
+            },
+            hasChange(){
+                console.log("改变了");
+                if(this.isallCheck){
+                    this.checkgroup = this.datalist;
+                }else{
+                    this.checkgroup=[];
+
+                }
+            },
+            hasliChange(){
+                console.log("hasliChange");
+                if(this.checkgroup.length ===this.datalist.length){
+                    this.isallCheck =true
+                }else{
+                    this.isallCheck=false;
+                }
+
+            },
+            hasdelCheck(data){
+                var number = data.number--;
+                if(number === 1){
+                    data.number=1;
+                }
+            }
+        },
+    })
+</script>
+</html>

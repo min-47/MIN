@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件化开发</title>
+</head>
+<body>
+    <div id="box">
+        <navbar></navbar>
+        <sidebar></sidebar>
+          
+    </div>
+
+   
+    
+</body>
+<script src="js/vue.js"></script>
+<script>
+     
+    /*
+    1.组件化开发基础
+        扩展html元素，封装可重用的代码
+
+    2.组件注册方式
+        a.全局组件
+            Vue.compoent
+        b.局部组件
+
+    3.组件编写方式与Vue实例的区别
+        * 自定义组件需要一个root element
+        * 父子组件中的data是无法共享
+        * 组件可以有data methods computed 但是data必须是一个函数
+        * 
+    4.组件通信
+        *父子组件传值（props，down，events，up）
+        *属性验证
+            props{name：Number}
+            NUmber String Bollean Array Object FUnction null（不限制类型）
+        事件机制
+            *使用$on(eventName)监听事件
+            *使用$emit(eventName)触发事件
+
+    
+    */
+    //1.全局定义组件(作用域隔离)
+    // 反斜杠很重要
+    Vue.component("navbar",{
+        template:
+                ` <div style="background-color:yellow;">    
+                        <button @click="handback()">返回</button>
+                        navbar__________{{navbarname}}
+                        <button>主页</button>
+                        <navchild></navchild>
+                 </div>`,
+        methods: {
+            handback(){
+                console.log("back");
+            }
+        },
+
+        //data是一个函数写法，需要返回值
+        data() {
+            return {
+                navbarname:"navbarname"
+            }
+        },
+        //局部定义组件
+        // 需要在当前组件内部定义
+        components:{
+            navchild:{
+                template:`
+                <div>navchild-组件化，只给navbar使用</div>`
+            }}
+        })
+    Vue.component("sidebar",{
+        template:`
+        <div style = "background-color:red">
+            <button>返回</button>
+            我是navbar的兄弟组件，是根组件的孩子组件
+            <navchild></navchild>
+            <button>主页</button>
+            </div>`
+    })
+    new Vue({
+        el:'#box',
+    })//root commonpent 根组件
+
+    
+</script>
+</html>

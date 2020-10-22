@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+
+        <!-- 使用v-model（双向数据绑定）自动收集数据
+        text/textarea
+        checkbox
+        radio
+        select -->
+            <!-- .prevent是防止表单自动提交 -->
+        <form action="/xxx" @submit.prevent="handleSubmit">
+            <!-- vue 会自动收集表单输入内容 -->
+            <span>用户名：</span>
+            <input type="text" v-model="username">
+            <br>
+
+            <span>密码：</span>
+            <input type="password" v-model="password">
+            <br>
+
+            <span>性别：</span>
+            <input type="radio" id="female" value="女" v-model="sex">
+            <label for="">女</label>
+            <input type="radio" id="male" value="男" v-model="sex">
+            <label for="">男</label>
+            <br>
+            <span>爱好：</span>
+            <!-- 设置value值帮助数组获得值 -->
+            <input type="checkbox" id="football" value="football" v-model="likes">
+            <label for="">足球</label>
+            <input type="checkbox" id="pinpang" value="pinpang" v-model="likes">
+            <label for="">乒乓球</label>
+            <input type="checkbox" id="youyong" value="youyong" v-model="likes">
+            <label for="">游泳</label>
+            <br>
+            <span>城市：</span>
+            <select name=""  v-model="cityId" >
+                <option value="">未选择</option>
+                <option v-for="(city,index) in allCitys" :value="city.id">{{city.name}}</option>
+                
+            </select>
+            <br>
+            <span>介绍：</span>
+            <textarea name="" id=""   rows="10" v-model="desc">
+                       
+            </textarea>
+            <br><br> 
+            <input type="submit" value="注册">  
+        </form>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+var vm = new Vue({
+    el:"#demo",
+    data:{
+        // 和value值匹配
+            username:'',
+            password:'',
+            sex:'女',
+            likes:[],
+            cityId:'3',
+            desc:'',
+         
+         allCitys:[{id:1,name:'BJ'},{id:2,name:'SZ'},{id:3,name:'SH'}],
+
+    },
+    methods: {
+        handleSubmit(event){
+            //alert(JSON.stringify(this.user))
+            console.log(this.username,this.password,this.sex,this.city,this.desc);
+        }
+    },
+})
+</script>
+</html>

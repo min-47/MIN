@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="demo">
+			<h2>测试： v-for 遍历数组</h2>
+			
+			<ul>
+				<li v-for="(i,index) in persons" :key ="index">
+					{{index}}----{{i.name}}----{{i.age}}
+					----<button type="button" @click="deleteP(index)">删除</button>
+					----<button type="button" @click="updateP(index,{name:'tom*',age:33})">更新</button>
+				</li>
+				<br>
+				 
+			</ul>
+			<h2>对象： v-for 遍历对象</h2>
+			<ul><!-- key值 属性名 -->
+				<li v-for="(p,key) in persons[1]" :key="key">{{p}}---{{key}} </li>
+			</ul>
+		</div>
+	</body>
+	<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		/**
+		 * 1.列表的显示
+		 *  数组：v-for/ index
+		 *  对象：v-for/key
+		 * 
+		 * 2.列表的更新显示
+		 *  删除item
+		 *  替换item
+		 * 
+		 * 3.变异方法
+		 *  - 执行本身方法的作用
+		 *  - 更新页面
+			 *   push()
+			 *   pop()
+			 * 	 shift()
+			 * 	 unshift()
+			 * 	 splice()
+			 * 	 sort()
+			 * 	 reverse()
+		 * 
+		 */
+		
+		const vm = new Vue({
+			el:'#demo',
+			data:{
+				persons:[//vue本身只是监视了person的改变，没有监视数组内部数据的改变
+				//vue重写了数组中一系列改变数组内部的数据的方法（先调用原生，再更新页面）
+				//数据内部改变，页面也会改变
+					{name:'tom0',age:18},
+					{name:'tom1',age:17},
+					{name:'tom2',age:16},
+					{name:'tom3',age:15},
+					{name:'tom4',age:14},]
+					
+			},
+			methods:{
+				deleteP(index){
+					//删除persons中指定的index的i
+					//splice() 是vue的数组的变异方法，也会触发视图更新
+					this.persons.splice(index,1)
+				},
+				updateP(index,obj){
+					//并没有改变person本身
+					//只是改变了数组内部的结构，但并没有调用变异方法
+					//vue不会更新页面
+					//this.persons[index] = obj
+					//this.persons =[]
+					//splice的功能 增删改
+					//增
+					  //this.persons.splice(index,0,obj)
+					//替换
+					this.persons.splice(index,1,obj)
+				}
+			}
+		})
+	</script>
+</html>

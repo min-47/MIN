@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>具名插槽</title>
+</head>
+<body>
+    <div id="box">
+        <child>
+            <!-- 具名插槽就是插槽设置具体值，指定位置显示，
+                因为一个slot会显示所有的的内容 -->
+            <div slot="a">aaaaaaaaaaa</div>
+            <div slot="b">bbbbbbbbbbbbbbb</div>
+        </child>
+        <swiper>
+            <li v-for="(data, index) in datalist" :key="index">{{data}}</li>
+        </swiper>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    Vue.component("child",{
+        template:`
+        <div>
+            <slot name="a"></slot>
+            child
+            <slot name="b"></slot>
+        </div>
+        `
+    })
+    Vue.component("swiper",{
+        template:`
+        <div>
+            <ul>
+                <slot></slot>
+            </ul>
+        </div>`
+    })
+    new Vue({
+        el:"#box",
+        data:{
+            datalist:["111","111","111","111"]
+        }
+    })
+</script>
+</html>

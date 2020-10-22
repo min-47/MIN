@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>插槽</title>
+</head>
+<body>
+    <div id="box">
+        <child>
+            <!-- 是child的插入 -->
+            <div>aaaaaaaaaaaaaaaaaaa</div>
+        </child>
+    </div>
+    
+</body>
+<script src="js/vue.js"></script>
+<script>
+  /*
+    插槽的使用
+    slot
+        单名slot
+        具名slot
+            混合父组件的内容与子组件自己的模板-->内容分发
+            父组件模板的内容在父组件作用域内编辑；子组件模板的内容在子组件作用域内编辑
+
+    */  
+    Vue.component("child",{
+        template:`
+        <div>
+            child
+            <slot><slot>
+        </div>
+        `
+    })
+    new Vue({
+        el:'#box',
+    })
+</script>
+</html>

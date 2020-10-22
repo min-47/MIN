@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 父子组件——组件验证</title>
+</head>
+<body>
+    <div id="box">
+        <navbar myname="首页"  :myshow="false"></navbar>
+        <navbar myname="hanzhongmin" :myshow="true"></navbar>
+        <!-- 接收父组件的属性值 记得加冒号进行状态绑定-->
+        <navbar :myname="parentname"  :myshow="true"> </navbar>
+    </div>
+    
+</body>
+<script src="js/vue.js"></script>
+<script>
+     
+    Vue.component("navbar",{
+        template:`
+        <div>
+            <button>返回</button>
+            navbar-----{{myname}}
+            <button v-show="myshow">首页</button>
+        </div>
+        `,
+        // 接收父组件传来的属性值
+        // 不能进行验证 ，容易出错                   
+        // props:["myname","myshow"]
+
+        //换成对象写法
+        props:{
+            myname:String,
+            myshow:Boolean
+
+        },
+
+
+    })
+    //根组件须放在最后
+    new Vue({
+        el:"#box",
+        data:{
+           parentname:"父组件的状态" 
+        }
+        
+    })
+</script>
+</html>

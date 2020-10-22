@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<!-- 
+	1.引入vue.js 
+	2. 创建vue对象
+		el：指定根据element（选择器）
+		data ：初始化数据（页面访问）
+	3.双向数据绑定
+	4.显示数据{{xxxx}}
+	5.理解vue的mvvm实现
+	 -->
+	<body>
+		<div id="app">
+			<input type="" name="" id="" value=""  v-model="username"/>
+			<p>hello{{username}}</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		/**
+		 * mvvm
+		 *  - model 模型 数据对象（data）
+		 *  - view 视图 模板页面
+		 *  - viewModel 视图模型（vue的实例 - vm)
+		 */
+		//创建vue实例
+		var vm = new Vue({ //配置对象
+		  el: '#app', //element选择器
+		  data: { //数据(model)
+		    username: 'min!'
+		  }
+		})
+	</script>
+	
+</html>

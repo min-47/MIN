@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <!-- 取消时刻更新[.lazy] -->
+        <input type="text" v-model.lazy="mytext">{{mytext}}
+        <br>
+        <!-- 限制用户输入字段 -->
+        <p>仅限于用户输入数字</p>
+        <input type="text" v-model.number="mynumber">{{mynumber}}
+        <!--取消首尾空格|{{}}|  -->
+        <input type="text " v-model="myusername">|{{myusername}}|
+        <p></p>
+
+         
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el:'#box',
+        data:{
+            mytext:'',
+            mynumber:0,
+            myusername:'',
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test">
+        <h2>显示格式化的日期时间 </h2>
+        <p>{{date}}</p>
+        <p>年月日：{{date|dateString('YYYY-MM-DD')}}</p>
+        <p>时分秒：{{date|dateString('HH:mm:ss')}}</p>
+    </div>
+
+</body>
+<script src="js/vue.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/moment.js/1.0.0/moment.js"></script>
+<script>
+/*
+1)定义过滤器
+Vue.filter(filterName,function(value[arg1,arg2]){
+    //进行一定的数据处理
+    return newValue
+})
+2)使用过滤器
+<div>{{mydata|filterName}}</div>
+<div>{{mydata|filterName(arg)}}</div>
+*/
+// 自定义过滤
+// 函数对象
+// 给函数传递时间，和格式
+Vue.filter('dateString',function(value,format){
+    // moment()格式化当前格式
+    // moment(value)指定时间格式化
+    // moment(format)传递格式
+    if (format) {
+        return moment(value).format(format);
+    } else {
+        return moment(value).format('MMMM Do YYYY, h:mm:ss a');
+    }
+    //简化format
+    //return moment(value).format(format||'MMMM Do YYYY, h:mm:ss a');
+    
+    //使用ES6 形参默认值
+    //Vue.filter('dateString',function(value,format='MMMM Do YYYY, h:mm:ss a'){
+    //    return moment(value).format(format)
+    //}
+
+
+    
+})
+new Vue({
+    el:'#test',
+    data:{
+        date:new Date(),
+
+    }
+})
+</script>
+</html>

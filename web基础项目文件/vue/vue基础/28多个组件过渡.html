@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多个组件过渡</title>
+    <style>
+        
+        .ex-enter-active{
+            animation: bounce-in .3s;
+        }
+        .ex-leave-active{
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+        }
+        }
+        ul li {
+          float: left;
+          width: 300px;
+          height: 50px;
+          background-color: #888;
+          
+          list-style: none;
+          line-height: 50px;
+      }
+      footer{
+          position: absolute;
+          bottom: 0px;
+      }
+      
+    </style>
+</head>
+<body>
+    <div id="box">
+        <keep-alive>
+        <!-- is的属性值是谁就是谁显示 -->
+        <transition name="ex" mode="out-in">
+            <component :is="who"></component>
+        </transition>
+         
+        </keep-alive>
+        
+
+        <footer>
+            <ul>
+                <!-- 标签的herf值取消，才不会出现闪现  -->
+                <!-- 是给who赋值，因此需要用单引号括起来 -->
+                <li><a   @click="who='home'">首页</a></li>
+                <li><a   @click="who='list'">列表页</a></li>
+                <li><a  @click="who='shopcar'">购物车页面</a></li>
+            </ul>
+        </footer>
+    </div>
+    
+</body>
+<script src="js/vue.js"></script>
+<script>
+    /*
+     2.多个元素过渡(设置key)
+                当有相同标签名的元素切换时，需要通过key特性设置唯一的值来标记
+                    以让Vue区分它们，否则Vue为了效率只会替换相同标签内部的内容
+                    mode:in-out out-in  元素切换的时候决定是先来还是先走
+                    
+    动态组件
+      <component>元素，动态的绑定多个组件到他的is属性
+      </keep-alive>保留状态，避免重新渲染  //将component元素括起来
+    
+    */
+ 
+    var vm = new Vue({
+        el:"#box",
+        data:{
+            who:'home'
+        },
+        components:{
+            "home":{
+                // 动态组件是删除上次页面，并不是隐藏，
+                // vue提供一个属性保持整个组件活着
+                template:`<div>home
+                <input/>
+                </div>`,
+            },
+            "list":{
+                template:`<div>list</div>`,
+            },
+            "shopcar":{
+                template:`<div>shopcar</div>`,
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>swiper</title>
+    <script src="js/vue.js"></script>
+    <script src="js/swiper.animate1.0.3.min.js"></script>
+    <script src="js/swiper-3.4.2.min.js"></script>
+    <link rel="stylesheet" href="css/swiper-3.4.2.min.css">
+    <style type="text/css">
+
+        .swiper-container{
+          --swiper-theme-color: #ff6600;
+          --swiper-pagination-color:black;/* 两种都可以 */
+          width: 600px;
+          height: 300px;
+        }
+      </style> 
+</head>
+<body>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <script language="javascript"> 
+    var mySwiper = new Swiper('.swiper-container',{
+    pagination : '.swiper-pagination',
+    //pagination : '#swiper-pagination1',
+    })
+    </script>
+</body>
+</html>

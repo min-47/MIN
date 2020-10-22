@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+        }
+        #box2{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="example">
+        <!-- 
+            1.v-on = "fin"
+            2.@xxx = "fun"
+            3.@xxx = "fun(参数)"
+            默认事件的形参：event
+            隐含属性对象：$event
+         -->
+        <h2>1.绑定监听</h2>
+        <button @click ="test1">test1</button>
+        <button @click="test2('min-47')">test2</button>
+        <!-- 无参数 会默认传入形参 event-->
+        <button @click ="test3">test3的按钮文本</button>
+         <!-- 有参数 会默认传入一个隐形属性对象 -->
+        <button @click ="test4(123)">test4的按钮文本</button>
+
+
+        <h2>2.事件修饰符</h2>
+        <!-- 阻止默认行为 -->
+        <!-- alert 有阻塞事件发生的行为，但是按下确定后仍会继续执行 -->
+        <!-- vue中简化了原生js 添加[.prevent]-->
+        <a href="http://www.oracle.com" @click.prevent ="test7">Oracle</a>
+
+         <!-- 标签嵌套会有事件的冒泡发生，取消事件的冒泡排序
+        原生js里面是使用 event.stopPropagation() -->
+        <!-- vue中简化了原生js[.stop] -->
+        <div id="box1" @click="test5">
+            <div id="box2"@click.stop = "test6"></div>
+        </div>
+        <h2>3.按键修饰符</h2>
+        <!-- 在键盘上添加按键修饰符 -->
+        <!-- 原生js里面使用keyCode监听 -->
+        <input type="text" @keyup.enter ="test7">
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+    new Vue({
+        el: '#example',
+        data:{
+           name:"Vue.js"
+        },
+        methods: {
+            test1(){
+                alert("test1");
+            },
+
+            test2(msg){
+                alert( msg);
+            }, 
+            //event可以省略不写
+            test3(){
+                alert(event.target.innerHTML);
+            },
+            //这里不能写入event 应该传入$event,也可以省略，但不能是一个参数
+            test4(number,$event){
+                alert( number+" "+event.target.innerHTML);
+            },
+            
+            test5(){
+                alert("outer");
+            },
+            test6(){
+
+                //在原生js里面使用event.stopPropagation()
+                // event.stopPropagation();
+                alert("inner");
+            },
+
+            test7(){
+                //在原生js里面会调用event.preventDefault()阻止事件的发生
+                //test7.preventDefault();
+                alert("阻止事件默认行为");
+            },
+            
+            test7(){
+                alert(event.target.value);
+            },
+
+
+        },
+        
+    })
+</script>
+</html>

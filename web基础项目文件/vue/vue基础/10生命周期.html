@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test">
+        <button @click="destoryVM">destroy vm</button>
+        <p v-show="isShow">vue学习第三天</p>
+    </div>
+</body>
+<script src="js/vue.js"></script>
+<script type="text/javascript">
+/*
+1.vue 对象的生命周期
+1） 初始化显示
+  - beforeCreate()
+  - created()
+  - beforeMount()
+  - mounted()
+
+2) 更新状态 : this.xxx = value
+  - beforeUpdate()
+  - update()
+
+3)销毁vue实例: vm:$destory()
+   - beforeDestory()
+   - destoryd()
+2.常用的生命周期方法
+mounted():发送ajax请求，启动定时器等异步任务
+beforeDstory():做收尾工作，清除定时器
+*/
+ const vm =new Vue ({
+     el:'#test',
+     data:{
+         isShow: true
+     },
+     //初始化阶段
+     beforeCreate() {
+         console.log('beforeCreate()')
+     },
+     created(){
+         console.log('created()')
+     },
+     beforeMount() {
+         console.log('beforeMount()');
+     },
+     mounted() {//初始化就立即调用 (1次)
+        //  回调函数最好使用箭头函数
+        // 箭头函数没有自己的this，使用外层的this，就是Vm对象
+        this.intervaiId=setInterval( ()=>{
+             console.log('_________________');
+             this.isShow = !this.isShow//更新数据
+         },1000)
+     }, 
+
+     //更新阶段
+     beforeUpdate(){
+         console.log('beforeUpdate()');
+     },
+     updated(){
+        console.log('updated()');
+     },
+
+    //死亡阶段
+     beforeDestroy() {//死亡之前调用(1 次)
+         //清除定时器
+         clearInterval(this.intervaiId);
+     },
+     destroyed() {
+         console.log('destroyed()');
+     },
+     methods: {
+         destoryVM(){
+             //干掉vm
+             this.$destroy( );
+         }
+     },
+ })
+
+</script>
+</html>
