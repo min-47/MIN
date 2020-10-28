@@ -1,0 +1,51 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "17718088",
+      "name": "播放器",
+      "font_class": "bofangqi",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    },
+    {
+      "icon_id": "17718089",
+      "name": "不收藏",
+      "font_class": "bushoucang",
+      "unicode": "e67f",
+      "unicode_decimal": 59007
+    },
+    {
+      "icon_id": "17718090",
+      "name": "播放器3",
+      "font_class": "bofangqi3",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "17718091",
+      "name": "播放",
+      "font_class": "bofang",
+      "unicode": "e681",
+      "unicode_decimal": 59009
+    },
+    {
+      "icon_id": "17718092",
+      "name": "菜单",
+      "font_class": "caidan",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "17718099",
+      "name": "光盘",
+      "font_class": "guangpan",
+      "unicode": "e683",
+      "unicode_decimal": 59011
+    }
+  ]
+}
