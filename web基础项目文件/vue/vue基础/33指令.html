@@ -22,7 +22,15 @@
     <!-- swiper基本结构 -->
     <div class="swiper-container a" slot="pagination">
         <div class="swiper-wrapper">
-            <div class="swiper-slide" v-for="(data, index) in datalist" >{{data}}</div>
+            <!-- 插入一个自己定义的指令 v-swiper -->
+            <!-- 自定义指令只能传一个变量，为获取多个值，可设置为一个对象变量 -->
+            <div class="swiper-slide" v-for="(data,index) in datalist" v-swiper="{
+                index:index,
+                length:datalist.length
+
+            } ">
+             {{data}}
+            </div>
         </div>
         <!-- 如果需要分页器 -->
         <div class="swiper-pagination"></div>
@@ -34,8 +42,50 @@
 
 </div>
 <script>
+    /*
+    v-if v-for v-model
+    操作底层dom
+
+    1.自定义组件的封装
+        自定义封装swiper组件
+        防止swiper初始化过早
+        
+    2.自定义指令
+        自定义指令介绍directives
+        钩子函数
+            参数：el,binding vnode(vnode.context)
+            bind inserted update componentUpdated,unbind
+        函数简写
+        inserted插入最后一个元素时调用（vnode，context，datalist.length-1）
+        this$nextTick()
+        */
+    Vue.directive("swiper",{
+        //指令可以封装轮播，是操作真实dom节点
+        inserted(el,bind){
+            // 指令的生存周期创建阶段，只会执行一次
+            // 当前节点插入父节点了
+            console.log(el);
+            if(bind.value.index===bind.value.length-1){
+                new Swiper(".a",{
+                    loop:true,
+                    pagination:{
+                        el:".swiper-pagination",
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+
+                })
+
+            }
+        },
+        update(){
+            // 指令-生命周期-更新
+        }
+    })
     new Vue({
-        el:"box",
+        el:"#box",
         data:{
             datalist:[]
         },

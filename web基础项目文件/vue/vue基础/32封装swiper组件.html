@@ -27,8 +27,7 @@
         <swiper :key="datalist.length">
             <div class="swiper-slide" v-for="(data, index) in datalist"  >{{data}}</div>
         </swiper>
-         
-        </div>
+
     </div>
 </body>
 <script>
@@ -63,7 +62,7 @@ mounted(){
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
-    },
+            },
         })
     },
 
