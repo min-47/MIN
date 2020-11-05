@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <!-- mustache语法 -->
+        <p>{{firstname +" " +lastname}}</p>
+
+        <!-- methods方法 -->
+        <p>{{getfullName()}}</p>
+        <p>{{getfullName()}}</p>
+        <p>{{getfullName()}}</p>
+        <p>{{getfullName()}}</p>
+
+        <!-- 计算属性 -->
+        <p>{{fullName}}</p>
+
+
+        <h2>计算属性复杂操作</h2>
+        <ul>
+            <li v-for="(item, index) in books" :key=" index ">{{item.name+" "+ item.price}}</li>
+        </ul>
+        <p>总价格{{totalPrice}}</p>
+        <p>总价格{{totalPrice}}</p>
+        <p>总价格{{totalPrice}}</p>
+        <p>总价格{{totalPrice}}</p>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    /**
+     * 计算属性的缓存
+     *  计算属性会进行缓存，如果多次使用时，计算属性只会调用一次
+     * 
+    */
+    const vm = new Vue({
+     el:'#box',
+     data:{
+       message:'min-47',
+       firstname:'min',
+       lastname:'47',
+       counter:100,
+
+       books:[
+           {id:110,name:'unix编程艺术',price:119},
+           {id:111,name:'代码大全',price:112},
+           {id:112,name:'深入理解计算机原理',price:119},
+           {id:113,name:'数据结构',price:123}
+       ]
+      
+     },
+     methods: {
+         getfullName(){
+             return this.firstname+this.lastname;
+         },
+     },
+     computed: {//计算属性（）
+        // 计算属性一般没有set方法，只读属性
+         fullName:function(){
+             console.log("fullname")
+            return this.firstname+this.lastname;
+         },
+         totalPrice:function(){
+            console.log("totalPrice")
+             let result = 0;
+             for(let i = 0;i<this.books.length;i++){
+                 result+=this.books[i].price;
+
+             }
+             return result
+         }
+     },
+ })
+</script>
+</html>

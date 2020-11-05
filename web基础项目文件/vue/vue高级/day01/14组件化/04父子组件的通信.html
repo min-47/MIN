@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div id="box">
+    <cpn :mymovies='movies' :mymessage='message'></cpn>
+    <!-- 传递默认值 -->
+    <cpn ></cpn>
+  </div>
+    
+</body>
+
+<template id="cpn">
+  <div>
+
+    <p>{{mymessage}}</p>
+    <p>{{mymovies}}</p>
+
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  /**
+   *  1、父子组件的通信
+   *  - 子组件是不能引用父组件和vue实例数据的
+   *  - 但是在开发中，需要数据从上层传递到下层
+   *  - 在一个页面中，我们从服务器请求到很多数据，但其中一部分数据并非是整个大页面来展示
+   *  - 而是需要下层子组件来展示，这个时候子组件并不会再次发送一个网络请求，而是直接让大组件
+   *    传递给子组件
+   *    （父组件请求数据，分发给子组件）
+   * 
+   *  2、父子组件之间的通信
+   *  - 通过props向子组件传递数据（父传子）
+   *  - 通过事件向父组件发送消息
+   * 
+   * 
+  */
+
+    const cpn = {
+      // 父传子（父亲里面的数据传递给子组件）
+      template:'#cpn',
+      // 第一种写法
+      // props:['mymovies','mymessage'],
+
+      // 第二种写法 props类型限制
+      // props:{
+      //   mymovies:Array,
+      //   mymessage:String,
+      // },
+
+      // 第三种写法，限制类型并且提供一些默认值
+      props:{
+        mymessage:{
+          type:String,
+          default:'aaaaaa'
+        },
+        mymovies:{
+          type:Array,
+          default:['水星记'],
+          // 必须传值，否则会报错{missing}
+          required:true,
+        }
+      },
+
+      data() {
+        return {
+          
+        }
+      },
+    }
+
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+        components:{
+          cpn,
+        }
+    })
+</script>
+</html>

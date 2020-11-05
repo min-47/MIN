@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+
+        <h2>v-once</h2>
+        <p>{{message}}</p>
+        <p v-once>{{message}}</p>
+        <p v-once>{{lastname}}</p>
+        <p>{{firstname}}</p>
+
+        <!-- mastache语法中，不仅仅可以直接写变量，也可以写简单的表达式 -->
+        <p>{{firstname + lastname}}</p>
+        <p>counter的值{{counter}}</p>
+        <p>counter的值的倍数{{counter*2}}</p>
+
+        <h2>V-HTML</h2>
+        <p>{{url}}</p>
+        <p v-html="url">{{url}}</p>
+
+        <h2>v-text</h2>
+        <p>{{message}}</p>
+        <p v-text="message">hanzhongmin</p>
+
+        <h2>v-pre</h2>
+        <p>{{message}}</p>
+        <p v-pre>{{message}}</p>
+
+        <h2>v-cloak</h2>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    /**
+     * v-once
+     * 该指令后面不需要跟任何表达式比如（v-for）
+     * 该指令表示元素和组件只会渲染一次，不会随着数据的改变而改变
+     * 
+     * v-html
+     * 某些情况下我们从服务器请求的数据本身就是HTML代码
+     * 如果直接通过{{}}来输出，会将HTML代码一起输出
+     * 但是我们可能希望的是按照HTML格式进行解析，并且显示对应的内容
+     *  - v-html会跟上一个string类型
+     *  - 会将string类型的HTML解析出来并且进行渲染
+     *  
+     * v-text
+     *  - 作用和Mustache比较相似，都是将数据显示在界面中
+     *  - v-text通常情况下，接收一个String类型
+     * 
+     * v-pre
+     *  - 用于跳过这个元素和他子元素的编译过程，用于显示原本的Mustache语法
+     * 
+     * v-cloak
+     *  - 在某些情况下，浏览器可能会直接显示出未编译的mustache标签
+     *  - 已被修复 
+     *
+    */
+ const vm = new Vue({
+     el:'#box',
+     data:{
+       message:'min-47',
+       firstname:'min',
+       lastname:'47',
+       counter:100,
+       url:' <a href="https://www.bilibili.com/video/BV15741177Eh?p=13">哔哩哔哩</a>'
+
+     }
+ })
+</script>
+</html>

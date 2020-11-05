@@ -1,0 +1,19 @@
+{
+	"config": {
+		"name": "天气预报"
+	},
+	"teststeps": [{
+		"name": "",
+		"request": {
+			"url": "http://apis.juhe.cn/simpleWeather/query",
+			"params": {
+				"city": "济南",
+				"key": "e9bbba7f1b86ddb76dfcdc029803c30a"
+			},
+			"method": "GET"
+		},
+		"validate": [{
+			"eq": ["status_code", 200]
+		}]
+	}]
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+      <!-- 
+        1、插槽的基本使用<slot><slot>
+        2、插槽的默认值<slot>默认标签<slot>
+        3、如果有多个值，同时放到组件进行替换是，一起作为替换元素
+       -->
+      <cpn><button>插槽按钮</button></cpn>
+
+      <cpn><p>插槽块级元素</p></cpn>
+
+      <cpn>
+        <div>
+          <P>插槽多种标签</P>
+          <h2>插槽多种标签</h2>
+          <button>插槽按钮</button>
+        </div>
+      </cpn>
+
+      <p>默认插槽值</p>
+      <cpn></cpn>
+
+    </div>
+</body>
+
+<template id="cpn">
+  <div>
+    <h2>标题</h2>
+    <p>我是内容</p>
+    <slot><button>按钮</button></slot>
+    <hr>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+        components:{
+          cpn:{
+            template:'#cpn',
+            data() {
+              return {
+                
+              }
+            },
+          }
+          
+        }
+    })
+</script>
+</html>

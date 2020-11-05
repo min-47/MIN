@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <h2>v-if的使用</h2>
+        <div v-if="isShow">
+            <p>{{message}}</p>
+            <p>{{message}}</p>
+            <p>{{message}}</p>
+            <p>{{message}}</p>
+            <p>{{message}}</p>
+             
+        </div>
+        <h2>v-else-if的使用</h2>
+        <p v-if="score>=90">优秀</p>
+        <p v-else-if="score>=80">良好</p>
+        <p v-else-if="score>=60">及格</p>
+        <p v-else >不及格</p>
+
+         
+        <h2>用户切换登录的案例</h2>
+        <span v-if='isUser'>
+           <label for="username">用户账号</label>
+            <input type="text" id='username' placeholder="用户账号">
+        </span>
+
+        <span v-else>
+            <label for="email">用户邮箱</label>
+            <input type="text" id='email' placeholder="用户邮箱">
+        </span>
+        <button @click="isUser=!isUser">切换类型</button>
+
+        <h2>V-SHOW的使用</h2>
+        <!-- v-if 当条件为false时，包含v-if指令的元素，根本不会存在dom树里面 -->
+
+        <p v-if="isShow">{{message}}</p>
+        <!--  v-show 当条件为false时，仅仅时将原属的display属性设置为none而已-->
+        <!-- 开发中如何选择
+            当需要显示和隐藏之间的切换很频繁时，使用v-show
+            当只有一次切换时，使用v-if -->
+            
+        <p v-show ="isShow">{{message}}</p>
+
+
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            isShow:true,
+            score:79,
+            isUser:true,
+        },
+    })
+</script>
+</html>

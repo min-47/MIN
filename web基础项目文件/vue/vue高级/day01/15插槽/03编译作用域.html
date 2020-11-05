@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+    <!-- 采用的是Vue实例下的isShow box 因为挂载到哪个对象，就采用哪个data
+      1、父组件模板的所有的东西都会在父级作用域内编译，
+        子组件模板的所有的东西都会在子级作用域内编译
+
+      2、作用域插槽：准备
+        父组件替换插槽的标签，但是内容由子组件来提供
+    -->
+      <cpn v-show="isShow"></cpn>
+      <!-- <cpn></cpn> -->
+
+    </div>
+</body>
+
+
+<template id="cpn">
+  <div>
+     <p>子组件</p>
+     <p>我是内容 hhhhh</p>
+    <hr>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+            isShow:true
+        },
+        components:{
+          cpn:{
+            template:'#cpn',
+            data() {
+              return {
+                // isShow:false
+              }
+            },
+          }
+          
+        }
+    })
+</script>
+</html>

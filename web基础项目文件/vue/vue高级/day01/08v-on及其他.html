@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div id="box">
+            <!-- 事件没有参数可以省略小括号 -->
+            <p>counter计数：{{counter}}</p>
+            <button @click="addcounter">+</button>
+            <button @click="subcounter">-</button>
+
+            <!-- 事件需要参数，但是没有传入，同时没有省略小括号，会传入undifined作为形参 -->
+            <button @click="btnclick()">btnclick</button>
+
+            <!-- 在事件定义时，写函数时省略了小括号，但是方法本身是需要一个参数的,这个时候
+            vue会默认将浏览器产生的event事件对象作为参数传入到方法-->
+            <button @click="btnclick1">btnclick1</button>
+
+            <!-- 方法定义时，我们既需要event对象，同时又需要其他参数 ,
+            手动获取到浏览器参数的event对象:$event-->
+            <button @click="btnclick2(123,$event)">btnclick2</button>
+        </div>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    /**
+     * v-on修饰符
+     *  .stop - 调用event.stopProapagation() 停止冒泡
+     *  .prevent - 调用event.preventDefalut() 阻止默认行为
+     *  .stop.prevent 串联修饰符
+     *  .{keyCode|keyAlias}-只当事件从特定键触发时才会回调
+     *  .native - 监听组件元素的原生事件
+     *  .once 只触发一次回调
+     * 
+    */
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            counter:0
+        },
+        methods: {
+            addcounter(){
+                this.counter++;
+            },
+            subcounter(){
+                this.counter--;
+            },
+            btnclick(name){
+                console.log(name);
+            },
+            btnclick1(event){
+                console.log(event);
+            },
+            btnclick2(number,event){
+                console.log(number,event);
+            }
+        },
+    })
+</script>
+</html>

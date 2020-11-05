@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="box">
+       <mycpn></mycpn>
+       <!-- <p>{{message}}</p> -->
+    </div>
+
+<hr>
+<hr>
+
+    <div id="box2">
+        <!-- <mycpn></mycpn>  -->
+        <p>这是第二个vue实例</p>
+    </div>
+    
+</body>
+<script src=" ../js/vue.js"></script>
+<script>
+    /**
+    组件化思想
+        - 将一个页面拆分成一个小小的功能块，
+         每个功能块完成属于自己这部分的独立的功能
+         方便页面的管理和维护
+
+        - vue.js 提供了一种抽象，让我们可以开发出一个个独立可复用的小组件
+         任何的应用都会被抽象成一种组件树
+
+    注册组件的基本步骤
+        - 创建组件的构造器：调用vue.extend()方法创建组件构造器
+            解析
+             调用Vue.extend() 创建一个组件构造器
+             在创建组件构造器时，传入Templete代表我们自定义组件的模板
+             该模板就在使用到组件的地方，要显示HTML代码
+
+        - 注册组件：调用vue.component()方法注册组件
+            解析
+            调用Vue.compent() 是将刚才的组件构造器注册为一个组件，并且为它起一个别名
+            所以需要传递两个参数，注册组件的标签名 组件构造器
+
+        - 使用组件：在vue实例的作用范围内使用组件
+            解析
+            组件必须挂载到某个vue实例下，否则不会生效
+    
+    */
+    // 创建组件构造器
+    const cpnC = Vue.extend({
+        template:`
+        <div>
+            <h2>标题</h2>
+            <p>这是一段内容</p>
+            <p>这是另一段内容</p>
+        </div>
+        `
+    })
+    // 注册组件（全局组件）
+    // 第一个参数是组件的别名，第二个参数是组件构造器
+    // Vue.component('mycpn',cpnC)
+
+    // 注册局部组件
+    // 在某个具体的vue实例下注册。其他vue实例不能使用
+    let  vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+        components:{
+            // mycpn是使用组件时的标签名
+            mycpn:cpnC
+        }
+    });
+
+    let vmm = new Vue({
+        el:'#box2',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+    })
+</script>
+</html>

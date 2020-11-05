@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+      <cpn></cpn>
+    </div>
+</body>
+
+<template id="cpn">
+  <div>
+    <p>我是cpn组件</p>
+   <ccpn></ccpn>
+  </div>
+</template>
+
+<template id="ccpn">
+  <div>
+    <P>我是子组件</P>
+    <button @click='btnClick'>按钮</button>
+  </div>
+</template>
+
+
+<script src="../js/vue.js"></script>
+<script>
+   
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+        methods: {
+
+          
+      },
+
+        components:{
+          cpn:{
+            template:'#cpn',
+            data() {
+              return {
+                name:'我是cpn的name'
+              }
+            },
+            methods: {
+              // btnClick(){
+              //   // 访问父组件$parent
+              //   console.log(this.$parent)
+              // }
+            },
+            components:{
+              ccpn:{
+                template:'#ccpn',
+                  methods: {
+                    btnClick(){
+                    // 访问父组件$parent
+                      console.log(this.$parent)
+                      console.log(this.$parent.name)
+                      // 访问根组件￥root
+                      console.log(this.$root.message)
+                    }
+                  },
+              }
+            }
+            
+          }
+        }
+    })
+</script>
+</html>

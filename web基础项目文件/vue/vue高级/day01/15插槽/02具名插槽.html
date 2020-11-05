@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+    
+      <cpn><button>按钮</button></cpn>
+
+    </div>
+</body>
+<!-- 
+  1、具名插槽的使用
+    - 给slot元素一个name属性即可
+    <slot name='myslot'></slot></slot>
+ -->
+
+<template id="cpn">
+  <div>
+    <slot name='left'><span>左边</span></slot>
+    <slot><span>中间</span></slot>
+    <slot name='右边'><span>右边</span></slot>  
+    <hr>
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+        components:{
+          cpn:{
+            template:'#cpn',
+            data() {
+              return {
+                
+              }
+            },
+          }
+          
+        }
+    })
+</script>
+</html>

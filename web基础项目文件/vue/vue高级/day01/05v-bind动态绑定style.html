@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <h2>bind动态绑定Style——对象语法</h2>
+        <!-- <p :style="{key(属性名)：value（属性值）}">{{message}}</p> -->
+        <!-- '50px' 必须加上单引号，否则当做一个变量去接卸 -->
+        <p :style="{fontSize:'50px'}">{{message}}</p>
+
+        <!-- finalSize当做一个变量去使用 必须加上单位 -->
+        <p :style ="{fontSize:finalSize +'px',backgroundColor:finalColor}">{{message}}</p>
+
+        <h2>bind动态绑定style——数组语法</h2>
+        <p :style="[baseStyle,baseStyle1]">{{message}}</p>
+
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+  /**
+   * 对象语法
+   *  - style后面跟着一个对象类型
+   *  - 对象的value是具体赋的值，值可以来自data中的属性
+   * 
+   * 数组语法
+   *  - style后面跟着一个数组类型
+   *  - 多个值，使用逗号分隔即可
+   * 
+  */
+    const vm = new Vue({
+        el:'#box',
+        data:{            
+            
+            message:'你好哇。min-47',
+            finalSize:100,
+            finalColor:'red',
+            baseStyle:{backgroundColor:'red'},
+            baseStyle1:{fontSize:"100px"}
+        },
+        methods: {
+            
+        },
+    })
+</script>
+</html>

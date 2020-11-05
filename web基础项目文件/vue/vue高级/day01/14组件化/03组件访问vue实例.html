@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <cpn></cpn>
+        
+    </div>
+</body>
+
+ <!-- 模板分离 -->
+<template id='cpn'>
+    <div>
+        <h2>标题</h2>
+        <p>这是一段内容</p>
+        <p>{{title}}</p>
+    </div>
+</template>
+
+
+
+<script src="../js/vue.js"></script>
+<script>
+    /**
+     1、组件不可以访问Vue实例数据，
+        - 组件是一个单独功能模块的封装
+        - 这个模块有属于自己的HTML模板，也应该有属于自己的数据data
+
+     2、组件数据的存放
+        - 组件对象也有一个data属性
+        -只是这个data属性必须是一个函数
+        -而且这个函数需要返回一个对象，对象内部保存着数据
+
+    3、为什么是一个函数
+        - 写成一个函数，数据以函数的返回值形式定义，每次复用一次组件就会返回一个新的data
+        - 类似给每一个组件实例创建一个私有的数据空间，让各个组件维护自己各自的数据
+        -单纯写成对象的形式，会使所有组件实例共用一个组件
+        -最终也是提高组件的复用性，防止彼此影响
+        
+
+    */
+    // 注册全局组件
+    Vue.component('cpn',{
+        template:'#cpn',
+        data() {
+            return {
+                title:'min'
+            }
+        },
+    })
+
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+    })
+</script>
+</html>

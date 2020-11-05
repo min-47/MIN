@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">
+      <cpn :number1='num1' :number2='num2'
+            @numchange1='num1change'
+            @numchange2='num2change'
+     ></cpn>
+    </div>
+</body>
+
+<template id="cpn">
+  <div>
+      <!-- 实现父传子数据以及双向绑定 -->
+      <p> props:{{number1}}</p>
+      <p>data:{{dnumber1}}</p>
+      <!-- <input type="text" v-model="dumber1"> -->
+      <!-- <input type="text"  :value='dnumber1' @input='dnumber1=$event.target.value'> -->
+      <input type="text" :value='dnumber1' @input='num1input'>
+      <p>props:{{number2}}</p>
+      <p>data:{{dnumber2}}</p>
+      <!-- <input type="text" v-model="dumber2"> -->
+      <!-- <input type="text" :value='dnumber2' @input='dnumber2=$event.target.value'> -->
+      <input type="text" :value='dnumber2' @input='num2input'>
+
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+
+<script>
+  const cpn ={
+    template:'#cpn',
+    data() {
+      return {
+        dnumber1:this.number1,
+        dnumber2:this.number2
+      }
+    },
+    props:{
+      number1:Number,
+      number2:Number
+    },
+    
+    // 子传父自定义事件
+    methods: {
+      num1input(){
+        // 将input中的value值赋值到dnumber中
+        this.dnumber1=event.target.value;
+        // 为了让父组件可修改值，发出一个事件，并把修改值传入进去
+        this.$emit('numchange1',this.dnumber1)
+        // 同时修饰dnumber的值
+        this.dnumber2 = this.dnumber1*100;
+        this.$emit('numchange2',this.dnumber2)
+      },
+
+      num2input(){
+        this.dnumber2=event.target.value;
+        this.$emit('numchange2',this.dnumber2)
+         // 同时修饰dnumber的值
+         this.dnumber1 = this.dnumber2/100;
+        this.$emit('numchange1',this.dnumber1)
+      }
+    },
+
+  }
+
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+            num1:0,
+            num2:1
+        },
+        components:{
+          cpn
+        },
+        methods: {
+          // 默认传递都是string类型
+          num1change(value){
+            this.num1=parseFloat(value)
+
+          },
+          num2change(value){
+            this.num2=parseFloat(value)
+          }
+        },
+    })
+
+</script>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+      <cpn></cpn>
+      <cpn></cpn>
+      <cpn ref='aaa'></cpn>
+      <cpn></cpn>
+      <button @click='btnClick'>按钮</button>
+    </div>
+</body>
+<template id="cpn">
+  <div>
+    我是子组件
+  </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+  /**
+   * 父子组件的访问方式
+   *  - 父组件访问子组件： $children $refs
+   *  - 子组件访问父组件：使用$parent
+   * 
+   * 1.$children 的访问
+   *  - this.children 是一个数组类型，包含所有的子组件对象
+   *  -
+   * 
+   * 
+   * 
+  */
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+        methods: {
+
+          btnClick(){
+
+            // $children 使用情况比较少
+
+          //   console.log('hhhh ',this.$children)
+          //   for (let item of this.$children) {
+          //         console.log(item.name)
+          //         item.showMessage()
+          //       }
+          // }
+           
+            // $refs => 对象类型 默认是一个空的对象
+            console.log(this.$refs.aaa.name)
+        },
+      },
+        components:{
+          cpn:{
+            template:'#cpn',
+            data() {
+              return {
+                name:'我是子组件的name'
+              }
+            },
+            methods: {
+
+              showMessage(){
+                console.log('showMessage')
+
+              }
+            },
+          }
+        }
+    })
+</script>
+</html>

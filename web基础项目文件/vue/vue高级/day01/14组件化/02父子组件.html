@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <!-- <cpn1></cpn1> -->
+        <cpn3></cpn3>  
+         <cpn4></cpn4>       
+    </div>
+    
+</body>
+<script src="../js/vue.js"></script>
+
+<script>
+    /**
+    1、父子组件
+        - 组件与组件之间存在层级关系
+    2、父子组件的错误用法——以子标签的形式在vue实例中使用
+        - 因为当子组件注册到父组件的components，vue会编译好父组件的模块
+        -该模板的内容已经决定了父组件将要渲染的HTML，相当于父组件中已经有子组件的内容了
+
+    3、组件注册的语法糖
+        - 全局组件的语法糖
+
+        -创建组件构造器(全局组件)
+
+        Vue.component('cpn3',{
+            template:`
+             <div>
+                <h2>标题3</h2>
+                <p>这是第三段内容</p>
+             </div>
+            `
+        })
+
+
+    
+    */
+    // 第一个组件注册器（子组件）
+     const cpnC1=Vue.extend({
+         template:`
+         <div>
+            <h2>标题1</h2>
+            <p>这是第一段内容</p>
+        </div>
+         `
+     })
+
+    //  第二个组件构造器(父组件)
+     const cpnC2=Vue.extend({
+         template:`
+         <div>
+            <h2>标题2</h2>
+            <p>这是第二段内容</p>
+            <cpn1></cpn1></cpn1>
+        </div>
+         `,
+         components:{
+             cpn1:cpnC1,
+         }
+     })
+
+      Vue.component('cpn3',{
+        template:`
+             <div>
+                <h2>标题3</h2>
+                <p>这是第三段内容</p>
+             </div>
+            `
+      })
+
+    //  根组件
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+        },
+        // components:{
+        //     cpn2:cpnC2,
+        //     // cpn1:cpnC1,
+        // }
+        // 注册局部组件的语法糖
+        components:{
+           'cpn4':{
+            template:`
+             <div>
+                <h2>标题4</h2>
+                <p>这是第四段内容</p>
+             </div>
+            `
+           }
+        }
+
+    })
+</script>
+</html>

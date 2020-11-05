@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="box">
+       <h2>{{message}}</h2>
+       <h2>{{name}}</h2>
+       <h2>{{movies}}</h2>
+
+
+       <h2>列表遍历案例</h2>
+       <ul>
+           <li v-for="data in movies">{{data}}</li>
+       </ul>
+
+       <h2>计数器案例</h2>
+       <p>当前计数{{number}}</p>
+       <!-- <button @click="number++">+</button>
+       <button @click="number--">-</button> -->
+
+       <button @click="addNumber">+</button>
+       <button @click="subNumber">-</button>
+   </div>
+</body> 
+<script src="../js/vue.js"></script>
+<script>
+   
+    //编程范式：声明式范式
+    const vm = new Vue({
+        el:'#box',//用于挂载要管理的元素
+        data:{//定义数据
+            message:'你好，min-47',
+            name:'min-47',
+            movies:['星际穿越','大话西游','少年派'],
+            number:0,
+        },
+        methods: {
+            addNumber(){
+                this.number++;
+                console.log("add被执行");
+            },
+            subNumber(){
+                // number是全局变量，需要this表示当前对象
+            this.number--;
+                console.log("sub被执行");
+            }
+        },
+    })
+</script>
+</html>

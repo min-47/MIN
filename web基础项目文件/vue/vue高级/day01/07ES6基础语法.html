@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <h2></h2>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    /**
+     *1、 变量作用域
+     *  - 变量是在什么范围是可用的
+     * 
+     * ES5中的var是没有块级作用域的 
+     * 没有块级作用域引起的问题
+     *  - ES5之前因为if和for 都是没有块级作用域的，所以很多时候，我们都必须借助于
+     *      function作用域来解决外面的变量问题
+     * 
+     * ES6中中加入了let let是有if和for的块级作用域的
+     * 
+     * 2、const的使用
+     * 什么时候使用const
+     *  - 在ES6中优先使用const 只用需要改变一个标识符的时候才是用Let
+     * 
+     * 作用
+     *  - 将某个变量修饰为变量
+     *  - 使用const修饰的标识符为常量，不可再次赋值
+     * 
+     * 注意
+     *  - 不可与再次赋值
+     *  - const修饰的标识符必须赋值
+     *  - 常量的含义是指向的对象不能修改，但是可以改变对象内部的属性
+     *
+     * 3、对象的增强写法
+     *  - 属性的增强写法
+     *  -  
+    */
+
+    // 1.属性的增强写法
+    const name = 'min-47';
+    const age = '47';
+    const height = '1.88';
+
+    // ES5的写法
+    const obj = {
+        name:name,
+        age:age,
+        height:height,
+    }
+    console.log(obj);
+    // ES6的写法
+    const obj1 = {
+        name ,
+        age ,
+        height ,
+    }
+    console.log(obj1);
+
+    // 2.函数增强写法
+    // ES5的写法
+    const obj = {
+        run:function(){
+
+        },
+        eat:function(){
+
+        }
+    }
+    // ES6的写法
+    const obj = {
+        run(){
+
+        },
+        eat(){
+
+        }
+    }
+    
+    const vm = new Vue({
+       
+    })
+</script>
+
+</html>

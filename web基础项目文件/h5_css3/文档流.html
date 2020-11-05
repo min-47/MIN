@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        文档流
+          - 网页是一个多层的结构。一层摞着一层
+            通过css可以将每一层设置样式
+            作为用户来讲只能看到最上一层
+            这些层中，最底下的一层称为文档流 ，文档流是网页的基础
+                我们所创建的元素默认都是在文档流中进行
+        元素的状态
+            - 在文档流中
+            - 脱离文档流
+        
+        元素在文档流中的特点
+            - 块元素会在页面独占一行
+              默认宽度就是父元素的全部
+              默认高度就是被元素的内容撑开（子元素）
+
+        行内元素
+            - 行内元素不会独占一行 只会占自身的大小
+            - 如果一行中不能容纳所有的行内元素
+                则元素会换到第二行继续排列
+            - 行内元素的默认宽度和高度都是被内容撑开
+
+        盒子模型
+            - 
+
+
+     -->
+     <style>
+       
+         #container{
+            background-color: rgb(35, 245, 70);
+            position: relative;
+            /* width: 10px;
+            height: 0px; */
+            top:50%;
+            left:50%;
+            transform: translate(-50%,-50%);
+
+        }
+         #right{
+             background-color:skyblue;
+             float: left;
+
+             width: 200px;
+             height: 500px;
+             margin-right: 20px;
+         }
+         #center{
+             float: left;
+             width: 500px;
+             height: 500px;
+             background-color: rgb(128, 190, 156);
+             margin-right: 20px;
+         }
+         
+         #left{
+             float: left;
+             width: 200px;
+             height: 500px;
+             background-color: rgb(221, 144, 144);
+             margin-right: 20px;
+         }
+         .right_box{
+             width: 150px;
+             height: 150px;
+             float: left;
+             
+             margin : 10px 15px;
+             background-color: rgb(165, 197, 75);
+         }
+
+     </style>
+</body>
+
+<div id="container">
+    <div id="left">
+
+    </div>
+    <div id="center"></div>
+    <div id="right">
+        <div class="right_box"></div>
+        <div class="right_box"></div>
+        <div class="right_box"></div>
+    </div>
+</div>
+</html>

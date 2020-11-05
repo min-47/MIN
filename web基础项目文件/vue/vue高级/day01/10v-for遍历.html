@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    
+        <div id="box">
+            <h2>v-for 遍历数组</h2>
+            <ul>
+                <!-- 在遍历的过程中，没有使用索引值 -->
+                <li v-for="item in movies">
+                    {{item}}
+                </li>
+            </ul>
+
+            <ul>
+                <!-- 在遍历的过程中使用索引值 -->
+                <li v-for="(item, index) in movies" :key="index">
+                    {{item}}
+                </li>
+            </ul>
+            <h2>v-for 遍历对象</h2>
+            <ul>
+                <!-- 在遍历对象的过程中，如果只是获取一个值，那么获取的是value -->
+                <li v-for="item in info ">{{item }}</li>
+            </ul>
+            <ul>
+                <!--获取key和value  （value，key)  -->
+                <li v-for="(item, index) in info" :key="index">{{item}}--{{index}}</li>
+            </ul>
+
+            <h2>响应式方法修改数组</h2>
+            <ul>
+                <!--获取key和value  （value，key)  -->
+                <li v-for="(item, index) in letters" :key="index">{{item}}--{{index}}</li>
+            </ul>
+            <button @click='btnclick'>按钮</button>
+
+            <h2>案例作业</h2>
+            <ul>
+                <li v-for="(item, index) in movies1" :key="index"
+                 :class="{active:currentindex===index}"
+                 @click="liclick(index)"
+                >
+                 {{item}}</li>
+            </ul>
+
+
+        </div>
+     
+</body>
+<script src="../js/vue.js"></script>
+<script>
+/**
+key的作用：主要是为了高效的更新虚拟Dom
+
+可以响应式修改数组的方法
+1、push() : 在数组后添加元素
+2、shift(): 删除数组中第一个元素
+3、pop(): 删除数组中最后一个元素
+4、unshift(): 在数组最前面添加元素
+5、splice(): 增删改
+    删除元素：第二个参数传入你要删除几个元素（如果没有传，就删除后面所有的元素
+    替换元素：第二个参数，表示我们要替换几个元素，后面就是用于替换前面的元素
+    插入元素：第二个参数，传入0，并且后面跟上要插入的元素
+6、sort(): 排序元素
+7、通过索引值修改数组中的元素不是响应式的
+
+
+*/
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+            
+            info:{
+                name:'min',
+                age:'33',
+                height:'188'
+            },
+            letters:['a','b','c','d','e'],
+            // 小案例的数据
+            movies1:['星际穿越','大话西游','少年派'],
+            currentindex:0,
+            
+        },
+
+        methods: {
+            btnclick(){
+                
+                this.letters.push('月光宝盒');
+                this.letters.splice(1,2);
+                this.letters.sort();
+
+
+            },
+            liclick(index){
+                this.currentindex=index;
+            }
+        },
+
+    })
+</script>
+</html>

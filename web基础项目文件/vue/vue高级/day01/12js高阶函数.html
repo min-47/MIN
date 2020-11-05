@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <ul>
+            <li v-for="(item, index) in books" :key="index">{{item.name}}</li>
+        </ul>
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    /**
+    编程范式：命令式编程、声明式编程
+    编程范式：面向对象编程（第一公民：对象）、函数式编程（第一公民：函数）
+    
+    
+    */
+    const nums =[10,34,22,44,33,13,222,456];
+    // 需求1.取出所有的小于100 的数字
+    let newNums=[];
+    for(let i of nums){
+        if(i<100){
+            newNums.push(i);
+        }       
+    } 
+    console.log(newNums);
+
+    // 需求2.将所有小于100的数字转化 全部*2
+    let newNums2=[];
+    for(let i of nums){
+        if(i<100){
+            newNums2.push(i*2);
+        }       
+    }
+     console.log(newNums2);
+    // 需求3. 将所有的newNums2相加，得到最终的结果
+    let newNums3=[];
+    let totalNumber=0;
+    for(let i of newNums2){
+        totalNumber+=i;       
+    }
+     console.log(totalNumber);
+
+    /**
+    js 高阶函数
+    1、filter() 过滤器
+        - filter函数有一个回调函数，且必须返回一个boolean值
+         true： 当返回true时，函数内部会自动将这次回调的n加入新数组中
+         false： 当返回false时，函数内部会过滤掉这次的n
+    2、map()
+        - 数组里面的值，同时变化，使用该函数
+    3、reduce()
+        - reduce:对数组中所有的内容进行汇总
+
+
+    
+    */
+    // 简写
+    // let newNums4 = nums.filter(n=>n<100)
+
+    let newNums4 = nums.filter(function(n){
+        return n<100;
+    })
+    console.log("newNums4",newNums4)
+
+    // map函数的使用
+    let newNums5 = newNums4.map(function(n){
+        return n*2;
+    })
+    console.log("newNums5",newNums5)
+ 
+    // reduce函数的使用
+    let totalnumber = newNums5.reduce(function(preValue,n){
+        return preValue+n;
+    },0)
+    console.log(totalnumber)
+
+
+// 需求三合一
+ let total = nums.filter((n)=>n<100).map(n=>n*2).reduce((preValue,n)=> preValue+n,0);
+ console.log("total",total)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+            books:[
+                {name:"《算法导论》",
+                day:"2006-9",
+                price:85.00,
+                counter:1,
+                },
+                {name:"《unix编程艺术》",
+                day:"2006-2",
+                price:59.00,
+                counter:1,
+                },
+                {name:"《编程小程序》",
+                day:"2006-9",
+                price:39.00,
+                counter:1,
+                },
+                {name:"《数据结构》",
+                day:"2006-9",
+                price:128.00,
+                counter:1,
+                },
+                
+            ]
+        },
+        methods: {
+            btnclick(){
+
+            }
+
+        },
+    })
+</script>
+</html>

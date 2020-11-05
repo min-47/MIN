@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <!-- 错误的做法 这里不可以使用mustache语法 -->
+        <!-- <img src="imgURL" alt="">  -->
+
+        <!-- 正确语法：使用v-bind指令 -->
+        <img v-bind:src="URL" alt=""> 
+
+        <!-- 语法糖写法 -->
+        <img  :src="URL" alt=""> 
+
+        <h2>动态绑定class——对象语法</h2>
+        <p>{{message}}</p>
+        <p :class="active">{{message}}</p>
+
+        <!-- {}绑定一个类 -->
+        <p :class="{'active':isActive}">{{message}}</p>
+
+        <!-- <p :class="{key1:value1,key2:value2}">{{message}}</p> -->
+        <!-- <p :class="{类名1:boolean,类名2:boolean}">{{message}}</p> -->
+        <p :class="{active:isActive,line:isLine}">{{message}}</p>
+        <button @click="btnClick">按钮</button>
+        
+       
+        <h2>动态绑定class——数组语法</h2>
+        <p :class="[active,line]">{{message}}</p>
+        <p :class="getClasses()">{{message}}</p>
+
+    </div>
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    /**
+     * 对象语法
+     *  - 直接通过{}绑定一个类
+     * 
+     *  - 也可以通过判断，传入多个值
+     * 
+     *  - 和普通的类同时存在，并不冲突
+     * 
+     *  - 如果过于复杂，可以放在一个methods或computed中
+     * 
+    */
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            
+            URL:'https://cn.vuejs.org/images/logo.png',
+            message:'你好哇。min-47',
+            active:'active',
+            isActive:true,
+            isLine:false,
+
+        },
+        methods: {
+            btnClick(){
+                this.isActive = !this.isActive;
+            },
+            getClasses(){
+                return [this.active,this.line]
+            }
+        },
+    })
+</script>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table{
+            border: 1px solid #e9e9e9;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+        th,td{
+            padding: 8px,16px;
+            border: 1px solid #e9e9e9;
+            text-align: left;
+
+        }
+        th{
+            background-color: #f7f7f7;
+            color:#5c6b77;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div id="box">
+        <table v-if="this.books.length">
+            <thead>
+                <th>书籍名称</th>
+                <th>出版日期</th>
+                <th>价格</th>
+                <th>购买数量</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in books" :key="index">
+                <td>{{item.name}}</td>
+                <td>{{item.day}}</td>
+                <td>{{item.price|showPrice(item.price)}}</td>
+                <td>
+                    <button @click="decounter(index)"
+                    :disabled='item.counter<=1'
+                    >-</button>
+                    {{item.counter}}
+                    <button @click="incounter(index)">+</button>
+                </td>
+                <td><button @click="dehandle(index)">移除</button></td>
+            </tr>
+            <tr><td>总计{{totalPrice|showPrice(totalPrice)}}</td></td></tr>
+            </tbody>         
+        </table>
+        <h2 v-else>购物车为空</h2>
+    </div>
+    
+</body>
+<script src="../js/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            books:[
+                {name:"《算法导论》",
+                day:"2006-9",
+                price:85.00,
+                counter:1,
+                },
+                {name:"《unix编程艺术》",
+                day:"2006-2",
+                price:59.00,
+                counter:1,
+                },
+                {name:"《编程小程序》",
+                day:"2006-9",
+                price:39.00,
+                counter:1,
+                },
+                {name:"《数据结构》",
+                day:"2006-9",
+                price:128.00,
+                counter:1,
+                },
+                
+            ]
+        },
+        methods: {
+            decounter(index){
+                this.books[index].counter--;
+
+            },
+            incounter(index){
+                this.books[index].counter++;
+
+            },
+            dehandle(index){
+                this.books.splice(index,1);
+            }
+        },
+        computed: {
+            totalPrice(){
+                // 第一种for循环
+                // let totalPrice=0;
+                // for(let i=0;i<this.books.length;i++){
+                //     totalPrice+=this.books[i].price*this.books[i].counter;
+                // }
+                // return totalPrice;
+
+                // 第二种for循环（let i in this.books)
+                // let totalPrice =0;
+                // for (const i in this.books) {
+                //         const element = this.books[i];
+                //         totalPrice+=this.books[i].price*this.books[i].counter;                    
+                // }
+                // return totalPrice;
+
+                // 第三种for循环（let i of this.books）
+                // let totalPrice =0;
+                // for(let item of this.books){
+                //     totalPrice += item.price*item.count
+                // }
+                // return totalPrice
+                
+
+                // 第四种reduce
+                return this.books.reduce(function(pre,book){
+                   return pre+ book.price*book.counter
+                },0)
+            }
+        },
+        filters:{
+            showPrice(index){
+                return '￥'+index.toFixed(2)
+            }
+        }
+    })
+</script>
+</html>

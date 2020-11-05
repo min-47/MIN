@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <!-- 
+            1、vue中使用v-model指令来实现表单元素和数据的双向绑定。
+
+                解析
+                - 当我们在输入框中输入内容时，input中的v-model绑定了message，
+                    所以会实时将输入的内容传递给 message，message发生改变
+                - 当message发生改变时，因为使用Mustache语法，将message的值插入到Dom中，
+                    所以Dom会发生响应改变。
+
+                所以，通过v-model实现了双向的绑定
+
+            2、v-model：checkbox
+                单个勾选框： 
+                    v-model即为布尔值
+                    此时input的value并不影响v-model的值
+                多个复选框
+                    当时多个复选框时，因为可以选中多个，所以对应的data属性是一个数组
+                    当选中某一个时，就会将input的value添加到数组中
+
+            3、v-model：select
+                单个勾选框
+                    v-model绑定的是一个值
+                    当我们选中option中的一个时，会将它对应的value赋值到mySelect中
+                多选：可以选中多个值
+                    v-model绑定的是一个数组
+                    当选中多个值时，就会将选中的option对应的value添加到数组mySelect中
+            
+            4、值绑定
+                真实开发时，input的值是从网络中获取或者定义在data中的
+                所以需要通过v-bind：value动态给value绑定值
+            
+            5、修饰符
+                lazy 懒加载
+                    默认情况下，v-model默认是在input事件中同步输入框的数据的
+                    一旦数据发生改变时，改变对应的data中的数据就会自动发生改变
+                    lazy修饰符可以让数据在失去焦点或者回车时，才会更新
+                number修饰符
+                    默认情况下，在输入框中无论输入的是字母还是数字，都会被当做字符串处理
+                    但是，希望处理的的是数字类型，那么字号直接诶将内容当做数字处理
+                    如果不是数字，其他字符会跳过
+                    number修饰符可以在输入的内容自动转换为数字类型
+                trim修饰符
+                    如果输入的内容首尾有很多空格，通常我们希望将其去除
+                    trim修饰符可以过滤内容两边的空格
+                
+
+
+
+
+         -->
+        <input type="text" v-model="message">
+        <!-- 相当于 -->
+        <input type="text" :value="message" @input="message=$event.target.value">
+
+        <h2>v-model 和 radio</h2>
+        <!-- 因为动态绑定了v-model所以不用加name的值也会互斥，因为sex的值只会有一个 -->
+        <label for="male">
+            <input type="radio" id="male"   value="男" v-model="sex">男
+        </label>
+        <label for="fmale">
+            <input type="radio" id="fmale"   value="女" v-model="sex">女
+        </label>
+        <p>您选择的性别是{{sex}}</p>
+
+        
+        <h2>v-model 和 checkbox（单钩选框）</h2>
+        <label for="agree">
+            <input id="agree" type="checkbox" v-model="isagree">同意协议</label>
+        <p>您选择的是：{{isagree}}</p>
+        <button :disabled="!isagree">下一步</button>
+
+        <h2>v-model 和 checkbox（多钩选框）</h2>
+        <input type="checkbox" value="篮球" v-model="hobbies">篮球
+        <input type="checkbox" value="足球" v-model="hobbies">足球
+        <input type="checkbox" value="乒乓球" v-model="hobbies">乒乓球
+        <input type="checkbox" value="羽毛球" v-model="hobbies">羽毛球
+        <p>您的爱好是{{hobbies}}</p>
+
+        
+        <h2>v-model 和 select</h2>
+        <!-- 想选择多个的时候，加一个属性值 multiple-->
+        <select name="abc" id="" v-model="fruit" multiple>
+            <option value="苹果" >苹果</option>
+            <option value="香蕉" >香蕉</option>
+            <option value="梨子" >梨子</option>
+            <option value="西瓜" >西瓜</option>
+            <option value="草莓" >草莓</option>
+        </select>
+        <p>您喜欢的水果是{{fruit}}</p>
+
+        <h2>值绑定</h2>
+        <label for="item" v-for="(item, index) in originhobbies" :id="item">
+            <input type="checkbox" :value='item' v-model="hobbies">{{item}}</label>
+
+        <h2>v-model 的修饰符 lazy</h2>
+        <label for="item"><input type="text" v-model="message">{{message}}</label>
+        <label for="item"><input type="text" v-model.lazy="message">{{message}}</label>
+
+        <h2>v-model 的修饰符 number</h2>
+        <label for="item"><input type="number" v-model.number="isnumber">{{typeof isnumber}}</label>
+
+        <h2>x-model 的修饰符 trim</h2>
+        <label for="item"><input type="text" v-model.trim="message">{{message}}</label>
+    </div>
+</body>
+
+<script src="../js/vue.js"></script>
+<script>
+    const vm = new Vue({
+        el:'#box',
+        data:{
+            message:'你好，min-47',
+            movies:['星际穿越','大话西游','少年派'],
+            sex:'女',
+            isagree:false,//单钩选框
+            hobbies:[],//多勾选框
+            fruit:[],//select
+            originhobbies:['篮球','足球','乒乓球','羽毛球'],
+            isnumber:'456789'
+        },
+    })
+</script>
+</html>
