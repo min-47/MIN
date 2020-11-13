@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 
+     * 业务需求
+     * 网络请求：aaa -> 自己处理（10行）
+     * 处理 aaa111 -> 自己处理（10行）
+     * 处理 aaa111222 -> 自己处理
+     *  
+    */
+    // new Promise((resolve,reject) => {
+    //   setTimeout(() =>{
+    //     resolve('aaa')
+    //   },1000)
+
+    // }).then(res =>{
+    //   console.log(res,'第一次的10行代码')
+
+    //   // 对结果进行第一次处理
+    //   return new Promise((resolve,reject)=>{
+    //     resolve(res+'111')
+    //   })
+    // }).then(res =>{
+    //   console.log(res,'第二次的10行代码');
+
+    //   // 简写(省略掉 new promise（resolve=>{}）)
+    //   return  Promise.resolve(res+'222')
+    // }).then(res =>{
+    //   console.log(res,'第二层的10行处理代码')
+
+    //   // 简写 省略（promise.resovle)
+    //   return  res+'333'
+    // }).then(res =>{
+    //   console.log(res,'第三层的10行处理代码')
+    // })
+
+    new Promise((resolve,reject) => {
+      setTimeout(() =>{
+        resolve('aaa')
+      },1000)
+
+    }).then(res =>{
+      console.log(res,'第一次的10行代码')
+
+      // 对结果进行第一次处理
+      return new Promise((resolve,reject)=>{
+        resolve(res+'111')
+      })
+    }).then(res =>{
+      console.log(res,'第二次的10行代码');
+
+      // 简写(省略掉 new promise（resolve=>{}）)
+      // 抛出异常，通过reject
+      // return  Promise.reject('errmessage')
+
+      // 手动抛出异常
+      throw('errmessage')
+
+
+    }).then(res =>{
+      console.log(res,'第二层的10行处理代码')
+
+      // 简写 省略（promise.resovle)
+      return  res+'333'
+    }).then(res =>{
+      console.log(res,'第三层的10行处理代码')
+    }).catch(err=>{
+      console.log(err)
+    })
+  
+  
+  </script>
+</body>
+</html>

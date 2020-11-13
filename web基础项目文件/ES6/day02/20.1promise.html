@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+  // 参数-> 函数（resolve，reject）
+  new Promise((resolve,reject)=>{
+    // 第一次网络请求
+    setTimeout(() =>{
+      resolve()
+    },100)
+  }).then(()=>{
+    // 第一次请求的数据
+    console.log('hello min-47');
+
+    return new Promise((resolve,reject)=>{
+        // 第二次网络请求
+        setTimeout(() =>{
+          resolve()
+        },1000)
+      }).then(()=>{
+        // 第二次网络请求的数据
+      console.log('hello min-472');
+    
+
+      return new Promise((resolve,reject)=>{
+        // 第三次网络请求
+      setTimeout(() =>{
+        // 成功的时候调用resolve
+        // resolve()
+
+        // 失败的时候调用reject
+        reject('error message')
+      },1000)
+      }).then(()=>{
+        // 第三次网络请求的数据
+      console.log('hello min-4733');
+
+        // 错误捕捉
+      }).catch((err) =>{
+        console.log(err);
+      })
+    })
+  })
+   
+  
+ 
+
+</script>
+</html>
