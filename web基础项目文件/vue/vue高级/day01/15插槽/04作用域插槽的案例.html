@@ -44,15 +44,17 @@
 
 <template id="cpn">
   <div>
+    
     <!-- 将planguage作为元素绑定到插槽上 -->
     <slot :myplanguage='planguage'>
-      <ul>
-        <li v-for="(item, index) in planguage" :key="index">{{item}}</li>
-      </ul>
     </slot>
+    
     <hr>
   </div>
 </template>
+
+
+
 
 <script src="../js/vue.js"></script>
 <script>

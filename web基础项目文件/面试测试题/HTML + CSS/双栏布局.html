@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      display: flex;
+     
+    }
+    .aside{
+      /* height: 500px; */
+      /* height: 500px;
+      width: 300px; */
+      background-color: aqua;
+      /* float: left; */
+      /* margin-right: -100%; */
+      flex: 0 0 400px;
+    }
+    .main{ 
+      /* height: 200px; */
+      /* height: 200px; */
+      /* float: left; */
+      /* width: 100%;  */
+      background-color: tomato;
+      /* margin-left: 300px;   */
+      /* overflow: hidden;   */
+      flex: 1 ;
+    }
+    .clear{
+      /* clear: both; */
+      flex:1 ;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="aside"></div>
+  
+      <div class="main">
+        <ul>
+         <li>这是列表1</li>
+         <li>这是列表2</li>
+         <li>这是列表3</li>
+         <li>这是列表4</li>
+         <li>这是列表5</li>
+         <li>这是列表6</li>
+        </ul>
+    </div>  
+    <!-- 不在box里面标准文档流排列
+    在box作用域里面，和main盒子根据flex 分配空间 -->
+ 
+</div>
+<P class="clear">其他内容1</P>
+<P  class="clear">其他内容2</P>
+
+</body>
+</html>

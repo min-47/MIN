@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .parent{
+      border: 10px solid tomato;
+      min-height: 20px;
+      /* position: relative; */
+    }
+    .son1{
+      background-color: skyblue;
+       width: 200px;
+       height: 200px;
+      margin-right: 200px;
+      float: left;
+    }
+    .son2{
+      background-color: blueviolet;
+      height: 300px;
+      width:  300px;
+      margin-left: 200px;
+      /* float: left; */
+      /* position: fixed; */
+      /* position: absolute; */
+      /* display: inline-block; */
+      /* display: table-cell; */
+      /* display: table-caption; */
+      /* overflow: hidden; */
+      /* display: flow-root; */
+      /* column-span: all; */
+
+
+    }
+    .box_son2{
+
+/* overflow: hidden; */
+/* float: left; */
+/* s失效 */
+/* position: absolute; */
+/* display: inline-block; */
+/* 失效 */
+/* position: fixed; */
+/* display: table-cell; */
+/* display: table-caption; */
+
+/* overflow: hidden; */
+/* overflow: visible; */
+/* display: flow-root; */
+
+column-span: all;
+
+
+}
+</style>
+</head>
+<body>
+<div class="parent">
+<div class="son1"></div>
+
+<div class="box_son2">
+<div class="son2"></div>
+</div>
+
+</div>
+
+</body>
+</html>

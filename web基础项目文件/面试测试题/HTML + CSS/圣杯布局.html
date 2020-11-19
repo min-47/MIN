@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      /* position: relative; */
+      overflow: hidden;
+
+      /* 给左右侧边栏留出空位 */
+      border: 10px solid red;
+      padding: 0 310px;
+    }
+    .left{
+      width: 300px;
+      height: 500px;
+     
+      background-color: aqua;
+      /* 浮动 脱离文档流 方便布局*/
+      float: left;
+    /* 相对于父元素左移（整个父元素宽度-自身宽度）的距离 */
+      margin-left: -100%;
+      /* 如果知道padding和left元素之间的比例关系，不用开启定位也行 */
+      /* 实验的步骤 */
+      /* margin-left: -250px; */
+      /* margin-left：-150% */
+      /* 正边距不能达到上浮的效果 */
+      /* margin-left:150%; */
+
+      /* 开启定位 方便定位到padding */
+      position: relative;
+      /* 使其靠左  定位到左边padding中*/
+      left: -310px;
+
+    
+
+    }
+    .center{
+      background-color: tomato;
+      width: 100%;
+      height: 500px;
+      float: left;
+      
+    }
+
+    .right{
+      width: 300px;
+      height: 600px;
+      background-color: skyblue;
+      /* 开启浮动 脱离文档流 */
+     float:left;
+     /* 向左偏移自身负宽度，出现在父元素上一行 */
+     margin-left: -300px;
+      /* 开启相对定位，方便定位右边padding里面*/
+     position: relative;
+     /* 向右偏移，定位到右padding里面 */
+     right: -310px;
+     
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="center"></div> 
+    <div class="left"></div> 
+     
+    <div class="right"></div>
+  
+  </div>
+</body>
+</html>
