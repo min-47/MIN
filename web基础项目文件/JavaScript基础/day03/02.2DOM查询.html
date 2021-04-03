@@ -110,11 +110,11 @@
 		 * 		fun  事件的回调函数，当单击时，执行函数
 		 * 
 		 */
-		function myClick(idStr,fun){
-			 var btn = document.getElementById(idStr);
-			 btn.onclick = fun;
+		// function myClick(idStr,fun){
+		// 	 var btn = document.getElementById(idStr);
+		// 	 btn.onclick = fun;
 				 
-				 }
+		// 		 }
 			
 			
 		var btn01 = document.getElementById("btn01");
@@ -259,7 +259,7 @@
 		})
 			
 			//获取bj的节点的文本
-		myClick("btn11",funtion(){
+		myClick("btn11",function(){
 			var bj = document.getElementById("bj");
 			alert(bj.innerHTML);
 			var fc = bj.firstChild;
